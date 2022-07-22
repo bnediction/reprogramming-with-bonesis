@@ -5,4 +5,5 @@ RUN conda install bonesis
 
 USER user
 RUN rm -rf /notebook/*
-COPY --chown=user:user . /notebook/
+COPY --chown=user:user paper.ipynb /notebook/
+COPY --chown=user:user benchmarks/  /notebook/benchmarks/
