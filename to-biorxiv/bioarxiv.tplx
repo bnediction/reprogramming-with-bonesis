@@ -1,0 +1,304 @@
+((*- extends 'document_contents.tex.j2' -*))
+
+((* set ns = namespace(execution_count=0, figures="") *))
+
+((*- block header -*))
+% vi:spell spelllang=en_us:syntax=tex:tw=0:
+\documentclass[10pt,a4paper]{article}
+\usepackage{fullpage}
+
+
+\usepackage[scaled]{helvet}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{cite}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\providecommand\mathplus{+}
+\usepackage{upgreek}
+
+
+\usepackage{url,hyperref,microtype}
+\usepackage{xspace}
+\usepackage[onehalfspacing]{setspace}
+
+\hypersetup{
+  breaklinks=true,  % so long urls are correctly broken across lines
+  colorlinks=true,
+  urlcolor=red,
+  linkcolor=blue,
+  citecolor=blue,
+}
+\usepackage{fontawesome}
+% Redefinition, symbol included in link:
+\let\orighref\href
+\renewcommand{\href}[2]{\orighref{#1}{#2\,\faExternalLink}}
+\renewcommand{\url}[1]{\href{#1}{#1}}
+
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+
+    %\newenvironment{description}
+    %               {\list{}{\labelwidth\z@ \itemindent-\leftmargin
+    %                        \let\makelabel\descriptionlabel}}
+    %               {\endlist}
+    %\newcommand*\descriptionlabel[1]{\hspace\labelsep
+    %                                \normalfont\bfseries #1}
+
+
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+\usepackage{url,microtype,subcaption}
+
+    ((* block definitions *))
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+
+    % Pygments definitions
+    ((( resources.latex.pygments_definitions )))
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+\def\keyFont{\fontsize{8}{11}\helveticabold }
+    ((* endblock definitions *))
+
+    ((* block commands *))
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    ((* endblock commands *))
+\setcounter{secnumdepth}{0}
+((* endblock header *))
+
+
+((* block body *))
+\begin{document}
+
+
+    ((( super() )))
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
+((* endblock body *))
+
+((* block markdowncell scoped *))
+((*- if cell.metadata["nbconvert_ignore"]: -*))
+((*- elif cell.metadata["latex_maketitle"]: -*))
+
+((( cell.source | md_maketitle_latex_metadata )))
+\def\corrAuthor{((( cell.metadata["latex_maketitle"]["corrAuthor"])))}
+\def\corrEmail{((( cell.metadata["latex_maketitle"]["corrEmail"])))}
+
+\title{\Title}
+
+\author{\Authors}
+\date{\footnotesize\Address\\ $^*${Corresponding author: } \corrEmail}
+
+\maketitle
+
+\begin{abstract}
+((( cell.source | md_maketitle_abstract | convert_pandoc('markdown', 'latex') )))
+\end{abstract}
+
+((*- else -*))
+    ((( super() )))
+((*- endif *))
+((* endblock markdowncell *))
+
+((* block outputs scoped *))
+((*- if cell.metadata["nbconvert_skip_output"]: -*))
+((*- else -*))
+((*- set ns.cell = cell -*))
+((*- set ns.cellopts = cell.metadata.get("nbconvert_latex", {}) -*))
+((*- if ns.cellopts["call_macro"] -*))
+    ((( call_macro(ns.cellopts["call_macro"]) )))
+((*- endif -*))
+((*- if ns.cellopts["raw_output"] -*))
+((( ns.cellopts["raw_output"] )))
+((*- else -*))
+((( super() )))
+((*- endif *))
+((*- endif *))
+((* endblock outputs *))
+
+%===============================================================================
+% Input
+%===============================================================================
+
+((* block input scoped *))
+((*- if resources.global_content_filter.include_input_prompt *))
+    ((*- set ns.codecell = cell -*))
+    ((( add_prompt(cell.source | highlight_code(strip_verbatim=True, metadata=cell.metadata), cell, 'In ', 'incolor') )))
+((* endif *))
+((* endblock input *))
+
+
+%===============================================================================
+% Output
+%===============================================================================
+
+((* block execute_result scoped *))
+    ((*- for type in output.data | filter_data_type -*))
+        ((*- if resources.global_content_filter.include_output_prompt -*))
+            ((*- if type in ['text/plain'] *))
+((( add_prompt(output.data['text/plain'] | escape_latex, cell, 'Out', 'outcolor') )))
+            ((*- elif type.startswith('image/') *))
+                ((( super() )))
+            ((* else -*))
+\begin{small}
+\noindent
+\texttt{\color{outcolor}Out[{\color{outcolor}((( cell.execution_count )))}]:}((( super() )))
+\end{small}
+            ((*- endif -*))
+        ((*- endif -*))
+    ((*- endfor -*))
+((* endblock execute_result *))
+
+((* block stream *))
+((*- if cell.metadata["nbconvert.display"]: -*))
+((( super() )))
+((*- endif -*))
+((* endblock stream *))
+
+%==============================================================================
+% Support Macros
+%==============================================================================
+
+% Name: draw_prompt
+% Purpose: Renders an output/input prompt
+((* macro add_prompt(text, cell, prompt, prompt_color) -*))
+    ((*- if cell.execution_count is defined -*))
+    ((*- set execution_count = "" ~ (cell.execution_count | replace(None, " ")) -*))
+    ((*- set ns.execution_count = execution_count -*))
+    ((*- else -*))
+    ((*- set execution_count = " " -*))
+    ((*- endif -*))
+    ((*- set indention =  " " * (execution_count | length + 7) -*))
+\begin{small}
+\begin{Verbatim}[commandchars=\\\{\}]
+((( text | add_prompts(first='{\color{' ~ prompt_color ~ '}' ~ prompt ~ '[{\\color{' ~ prompt_color ~ '}' ~ execution_count ~ '}]:} ', cont=indention) )))
+\end{Verbatim}
+\end{small}
+((*- endmacro *))
+
+((* macro draw_figure(filename) -*))
+((* set filename = filename | posix_path *))
+((*- block figure scoped -*))
+    ((*- if not ns.cellopts["raw_output"] -*))
+    The resulting graphics is reproduced in Figure~\ref{fig:((( filename )))}.
+    ((*- endif -*))
+    ((*- set figopts = ns.cellopts.get("figures", {}) -*))
+    ((*- set includegraphics_args = figopts.get("includegraphics_args", "scale=0.7") -*))
+    \begin{figure}[tbp]
+    \centering
+    \includegraphics[((( includegraphics_args )))]{((( filename )))}
+    \caption{Graphical output resulting from the input code
+    \texttt{\small{\color{incolor}In~[((( ns.execution_count )))]}
+    }}
+    \label{fig:((( filename )))}
+    \end{figure}
+((*- endblock figure -*))
+((*- endmacro *))
+
+((* macro call_macro(argv) -*))
+    ((*- if argv[0] == "draw_figure" -*))
+        ((*- set macro = draw_figure -*))
+    ((*- endif -*))
+    ((( macro(*argv[1:]) )))
+((*- endmacro -*))
