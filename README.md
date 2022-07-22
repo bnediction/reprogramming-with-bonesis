@@ -5,4 +5,4 @@ Executable paper and data demonstrating marker reprogramming with
 
 [:notebook: View the paper](https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/main/paper.ipynb)
 
-[:play_button: Execute the paper](https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/main) (using mybinder service)
+[:arrow_forward: Execute the paper](https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/main) (using mybinder service)
