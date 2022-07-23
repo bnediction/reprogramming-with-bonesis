@@ -288,9 +288,11 @@
     \begin{figure}[tbp]
     \centering
     \includegraphics[((( includegraphics_args )))]{((( filename )))}
-    \caption{Graphical output resulting from the input code
-    \texttt{\small{\color{incolor}In~[((( ns.execution_count )))]}
-    }}
+    ((*- if ns.cellopts["nbconvert.figure.caption"]: -*))
+    \caption{((( ns.cellopts["nbconvert.figure.caption"] )))}
+    ((*- else -*))
+    \caption{Graphical output resulting from the input code \texttt{\small{\color{incolor}In~[((( ns.execution_count )))]} }}
+    ((*- endif -*))
     \label{fig:((( filename )))}
     \end{figure}
 ((*- endblock figure -*))
