@@ -29,6 +29,7 @@ def parse_maketitle_mdcell(input):
         elif state == 4 and line.startswith("**Keywords**:"):
             data["keywords"] = line.split(":")[1].replace("*","").strip()
             state = 5
+            break
         elif state == 4 and line.startswith("> "):
             data["abstract"].append(line[2:].strip())
 
@@ -52,6 +53,8 @@ def keywords(input):
     data = parse_maketitle_mdcell(input)
     return data["keywords"]
 
+def sup2latex(text):
+    return text.replace("<sup>", "$^\\text{").replace("</sup>","}$")
 
 
 if __name__ == "__main__":

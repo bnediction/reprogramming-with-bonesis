@@ -9,4 +9,5 @@ c.Exporter.filters = {
     "md_maketitle_abstract": "filters.abstract",
     "md_maketitle_keywords": "filters.keywords",
     "citation2latex": "citation.citation2latex",
+    "makesupp": "filters.sup2latex",
 }

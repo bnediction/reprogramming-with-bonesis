@@ -199,7 +199,7 @@
 \end{abstract}
 
 ((*- else -*))
-    ((( super() )))
+    ((( cell.source | makesupp | citation2latex | strip_files_prefix | convert_pandoc('markdown+tex_math_double_backslash', 'json',extra_args=[]) | resolve_references | convert_pandoc('json','latex'))))
 ((*- endif *))
 ((* endblock markdowncell *))
 
@@ -243,10 +243,7 @@
             ((*- elif type.startswith('image/') *))
                 ((( super() )))
             ((* else -*))
-\begin{small}
-\noindent
-\texttt{\color{outcolor}Out[{\color{outcolor}((( cell.execution_count )))}]:}((( super() )))
-\end{small}
+                ((( super() )))
             ((*- endif -*))
         ((*- endif -*))
     ((*- endfor -*))
@@ -283,6 +280,7 @@
 ((* set filename = filename | posix_path *))
 ((*- block figure scoped -*))
     ((*- if not ns.cellopts["raw_output"] -*))
+    \noindent
     The resulting graphics is reproduced in Figure~\ref{fig:((( filename )))}.
     ((*- endif -*))
     ((*- set figopts = ns.cellopts.get("figures", {}) -*))
