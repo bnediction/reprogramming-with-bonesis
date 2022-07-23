@@ -11,10 +11,9 @@
 \usepackage[scaled]{helvet}
 \usepackage{graphicx}
 \usepackage{xcolor}
-\usepackage{cite}
 \usepackage{multirow}
 \usepackage[utf8]{inputenc}
-\usepackage{natbib}
+\usepackage[round]{natbib}
 \providecommand\mathplus{+}
 \usepackage{upgreek}
 
@@ -22,6 +21,7 @@
 \usepackage{url,hyperref,microtype}
 \usepackage{xspace}
 \usepackage[onehalfspacing]{setspace}
+
 
 \hypersetup{
   breaklinks=true,  % so long urls are correctly broken across lines
@@ -35,6 +35,8 @@
 \let\orighref\href
 \renewcommand{\href}[2]{\orighref{#1}{#2\,\faExternalLink}}
 \renewcommand{\url}[1]{\href{#1}{#1}}
+\newcommand{\doiprefix}{}
+\newcommand{\doi}[1]{doi:\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
 
     \makeatletter
     \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
@@ -171,7 +173,7 @@
 
     ((( super() )))
 
-\bibliographystyle{unsrt}
+\bibliographystyle{abbrvnat}
 \bibliography{references}
 
 \end{document}
@@ -188,7 +190,7 @@
 \title{\Title}
 
 \author{\Authors}
-\date{\footnotesize\Address\\ $^*${Corresponding author: } \corrEmail}
+\date{\footnotesize\Address}%\\ $^*${Corresponding author: } \corrEmail}
 
 \maketitle
 
