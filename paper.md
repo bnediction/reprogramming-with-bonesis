@@ -51,13 +51,13 @@ MP fixed points match with the fixed points of the global Boolean map of the BN 
 
 The software *BoNesis* ([github.com/bnediction/bonesis](https://github.com/bnediction/bonesis)) provides a generic environment for the automated construction of BNs with MP update mode from a specified structural and dynamical properties. The properties are translated into a logic satisfiability problem, expressed in Answer-Set Programming (ASP). Initially, *BoNesis* has been designed for performing BN synthesis <cite data-citep="bn-synthesis-ICTAI19">(<a href="https://doi.org/10.1109/ICTAI.2019.00014">Chevalier et al., 2019</a>)</cite>: solutions of the logic model correspond to BNs that possess the specified structural and dynamical properties. Leveraging this generic declarative specification of properties, *BoNesis* is a versatile tool for reasoning on BNs in general, with the MP update mode: besides synthesis, it can be used to do model checking, identify fixed points and attractors in ensemble of BNs, and identifying reprogramming strategies.
 
-In this paper, we show how the software *BoNesis* can be employed to solve P1, P2, P3, and P4 in the scope of *locally-monotone* BNs, where each local function is *[unate](https://en.wikipedia.org/wiki/Unate_function)*, i.e., where each local function never depends both positively and negatively from a same component.
+In this paper, we show how the software *BoNesis* can be employed to solve P1, P2, P3, and P4 in the scope of *locally-monotone* BNs, where each local function is *[unate](https://en.wikipedia.org/wiki/Unate_function)*, i.e., where each local function never depends on both positively and negatively from a same component.
 
 *BoNesis* enables reasoning on *ensembles* of BNs: one of its basic input is the domain of BNs to consider. This domain could be reduced to a singleton BN: in that case, the reasoning is similar to standard model checking and reprogramming. In general, the domain is specified from an influence graph, possibly with additional constraints on the underlying logical functions. For BN synthesis, this domain is used to delimit symbolically the set of candidate models: *BoNesis* will output the subset of them that verify the desired dynamical properties. We show how problems P1 to P4 can be partly lifted to ensembles of BNs using this approach.
 
 +++
 
-The paper is structured as follows. The *Methods* section gives the necessary background on BNs and MP update mode and formulation of elementary dynamical properties as satisfaction problems, as well as main principles of the BoNesis environment. The *Results* section  details how the different reprogramming problems P1-P4 can be addressed using *BoNesis* and shows some experiments to assess their scalability. Finally, the *Discussion* section sketches possible extensions of the addressed problems and underlines current challenges for their resolution.
+The paper is structured as follows. The *Methods* section gives the necessary background on BNs and MP update mode and formulation of elementary dynamical properties as satisfaction problems, as well as main principles of the *BoNesis* environment. The *Results* section  details how the different reprogramming problems P1-P4 can be addressed using *BoNesis* and shows some experiments to assess their scalability. Finally, the *Discussion* section sketches possible extensions of the addressed problems and underlines current challenges for their resolution.
 
 This paper is *executable*: it contains snippets of Python code employing *BoNesis* to demonstrate its usage on small examples, including command line usage. Instructions for its execution are given at the beginning of the *Results* section.
 It can be visualized online at [nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb](https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb) and interactively executed either online at [mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/release](https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/release) using [mybinder](https://mybinder.org/) online free service, or locally, following instructions given later in this paper.
@@ -104,11 +104,11 @@ For instance, consider the quantified Boolean expression "$\exists x_1\exists x_
 
 Deciding whether such an expression is true (satisfiable) is a fundamental problem in computer science. The complexity of this problem actually depends on the alternance of quantifiers. Thus, in the following we will classify the quantified Boolean expressions by their sequence of quantifiers $Q_1\cdots Q_m$ but ignoring repetitions: an $\exists\exists\forall\forall\forall\exists\exists\forall$-expression has the same decision complexity as an $\exists\forall\exists\forall$-expression.
 
-Computational complexity <cite data-citep="Papadimitriou">(<a href="https://pdfcoffee.com/computational-complexity-christos-papadimitrioupdf-pdf-free.html">Papadimitriou, 1993</a>)</cite> is a fundamental theory of computer science to classify decision problems: a (decision) problem is in class C whenever there exists an algorithm of worst-case complexity C, C referring to either a time or space complexity. For instance, the class PTIME gathers all the the problems that can be decided in time polynomial with the size of the input (e.g., the length of the Boolean expression).
+Computational complexity <cite data-citep="Papadimitriou">(<a href="https://pdfcoffee.com/computational-complexity-christos-papadimitrioupdf-pdf-free.html">Papadimitriou, 1993</a>)</cite> is a fundamental theory of computer science to classify decision problems: a (decision) problem is in class C whenever there exists an algorithm of worst-case complexity C, C referring to either a time or space complexity. For instance, the class PTIME gathers all the problems that can be decided in time polynomial with the size of the input (e.g., the length of the Boolean expression).
 
 The decision of satisfiability of $\exists$-expressions is the infamous (Boolean) SAT(isfiability) problem, which is NP-complete: it can be solved by a non-deterministic polynomial time algorithm, and it is among the hardest problems in this class: any problem in NP can be (efficiently) transformed into a SAT problem. In practice, our computers being deterministic, the resolution of the SAT problems employs algorithms running in worst-case  time and space exponential with the number of variables in the Boolean expression. However, modern SAT solvers can approach expressions with thousands to millions of variables.
 
-The decision of satisifiability of $\forall$-expressions can be seen as a complementary problem to $\exists$-expression: $\forall X~\phi(X)$ is satisfiable if and only if $\exists X~\neg\phi(X)$ is not satisfiable: it is a *co*NP-complete problem. It is not known whether coNP = NP.
+The decision of satisfiability of $\forall$-expressions can be seen as a complementary problem to $\exists$-expression: $\forall X~\phi(X)$ is satisfiable if and only if $\exists X~\neg\phi(X)$ is not satisfiable: it is a *co*NP-complete problem. It is not known whether coNP = NP.
 
 Then, the alternance of quantifiers makes the problem climbing into the so-called polynomial hierarchy[^1]. $\exists\ldots$-expressions are $\Sigma_k^{\mathrm P}$-complete problems, where $k$ is the number of alternating quantifiers (starting with $\exists$), while $\forall\ldots$-expressions are $\Pi_k^{\mathrm P}$-complete
 ($\Sigma_1^{\mathrm P}$=NP and $\Pi_1^{\mathrm P}$=coNP). It is not known yet whether all these complexity classes are equal, but in practice, algorithms of resolution scale rapidly down with their height in the polynomial hierarchy. Each of these complexity classes are included in PSPACE, the class of problems solvable in polynomial space. PSPACE-complete problems, such as the verification of properties of asynchronous BNs, are known to be difficult to tackle in practice (currently limited to a couple of hundreds of variables in the case of BNs).
@@ -145,7 +145,7 @@ Deciding whether a trap space *is not* minimal boils down to deciding the existe
 
 ### MP reachability of attractors
 
-Given a configuration $x$ and a MP attractor $A\in \{0,1,*\}^n$, there is a MP trajectory from $x$ to any configuration $y\in A$ if and only if $A$ is smaller than the smallest trap space *containing* $x$. We write $\operatorname{reach}(x,y)$ the existence of such a trajectory.
+Given a configuration $x$ and an MP attractor $A\in \{0,1,*\}^n$, there is an MP trajectory from $x$ to any configuration $y\in A$ if and only if $A$ is smaller than the smallest trap space *containing* $x$. We write $\operatorname{reach}(x,y)$ the existence of such a trajectory.
 
 Let us denote by $\operatorname{TS}(x) \in \{0,1,*\}^n$ the smallest trap space containing $x$. The computation of $h=\operatorname{TS}(x)$ can be performed  from $x$ by iteratively freeing the components necessarily to fulfill the closeness property. Here is a sketch of algorithm, where `SAT(h, f[i] = -x[i])` is true if and only if there exists a configuration $y\in c(h)$ such that $f_i(y)=\neg x_i$:
 ```
@@ -166,7 +166,7 @@ Therefore, the decision of MP reachability of attractors is in PTIME<sup>NP</sup
 
 Note that the general MP reachability property is not addressed here, but its overall complexity is identical. With (a)synchronous update modes, it is a PSPACE-complete problem.
 
-### Belonging to a MP attractor
+### Belonging to an MP attractor
 
 Finally, given a configuration $x$, we are interested in deciding whether $x$ belongs to an attractor of $f$ (with the MP update mode). We write $\operatorname{IN-ATTRACTOR}(x)$ such a property. Following the above sub-sections, this can be verified in two steps: (1) compute the smallest trap spaces containing $x$, noted $\operatorname{TS}(x)$, and (2) verify whether $\operatorname{TS}(x)$ is a minimal trap space. This later property is true if and only if for any vertex $y$ of $\operatorname{TS}(x)$, the minimal trap space containing $y$ is equal to $\operatorname{TS}(x)$:
 $$
@@ -371,7 +371,7 @@ list(marker_reprogramming_fixpoints(f, {"C": 1}, 2))
 ```
 
 Indeed, fixing `A` to 0 breaks the negative feedback, and make `B` converge to 1. There, `C` converges to state 1.
-Then, remark that fixing `C` to 1 is not enough to fulfill the property, as `A` and `B` still oscillate. Thus, one of these 2 must be fixed as well, to any value. The solution `{'A': 0, 'C': 1}` is not returned as `{'A': 0}` is sufficient to aquire the desired dynamical property.
+Then, remark that fixing `C` to 1 is not enough to fulfill the property, as `A` and `B` still oscillate. Thus, one of these 2 must be fixed as well, to any value. The solution `{'A': 0, 'C': 1}` is not returned as `{'A': 0}` is sufficient to acquire the desired dynamical property.
 
 In our *BoNesis* code snippet defined above, by default we ensure that the perturbed BN possesses at least one fixed point. When relaxing this constraint, we obtain that the empty perturbation is the (unique) minimal solution, as `f` has no fixed point.
 
@@ -618,7 +618,7 @@ pf["D"] = 0
 tabulate(pf.attractors())
 ```
 
-The (only) fixed point of the network indeed has `C` active. However, it possess another (cyclic) attractor, where `C` is inactive.
+The (only) fixed point of the network indeed has `C` active. However, it possesses another (cyclic) attractor, where `C` is inactive.
 This example points out that focusing on fixed point reprogramming may lead to predicting perturbations which are not sufficient to ensure that all the attractors show the desired marker.
 
 The complete attractor reprogramming returns that the perturbation of `D` must be coupled with a perturbation of `A` or `B`, in this case to destroy the cyclic attractor.
@@ -747,7 +747,7 @@ The same results can be obtained using the command line as follows.
 In the previous section, the reprogramming was performed on a single BN, by giving to *BoNesis* the singleton domain of BNs to consider. As described in the Method section, *BoNesis* can reason on ensembles of BNs, either specified explicitly, or implicitly by an influence graph.
 The functions defined above can then be directly applied to such ensembles of BNs. In this section, we briefly discuss how the resulting reprogramming solutions should then be interpreted with respect to these ensembles.
 
-Given a domain of BNs $\mathbb F$, *BoNesis* returns a solution whenever at least one BN of this domain satisfies the given properties. Intuitively, this means that the logic satisifiability problem is of the form $\exists f\in \mathbb F, \Phi(f)$.
+Given a domain of BNs $\mathbb F$, *BoNesis* returns a solution whenever at least one BN of this domain satisfies the given properties. Intuitively, this means that the logic satisfiability problem is of the form $\exists f\in \mathbb F, \Phi(f)$.
 As detailed in <cite data-citep="bn-synthesis-ICTAI19">(<a href="https://doi.org/10.1109/ICTAI.2019.00014">Chevalier et al., 2019</a>)</cite> in the scope of locally-montone BNs, the size of the "$f\in\mathbb F$" formula is, in general, exponential (binomial coefficient) with the in-degree of nodes in the influence graph. This complexity is due to the maximum number of clauses a Boolean function can have. Our encoding in *BoNesis* allows specifying an upper bound to this number, which enables tackling very large scale instances although giving access only to a subset of $\mathbb F$. The encoding of $\mathbb F$ in *BoNesis* also supports enforcing a canonic representation of BNs in order to offer a non-redundant enumeration of the BNs, at the price of a quadratic size of the formula. However, in our case, as we are only interested in enumerating the perturbations, the canonicity of BNs is not needed.
 
 In the case of our implementation of marker reprogramming of fixed points (P1 and P2), the expression becomes of the  form:
@@ -839,7 +839,7 @@ Note that in this implementation, we do not ensure the existence of a fixed poin
 
 +++
 
-In order to evaluate the scalability on realistic BNs, we use the benchmark constituted by <cite data-citet="Moon22"><a href="https://doi.org/10.1016/j.ejor.2021.10.019">Moon et al. (2022)</a></cite> to evaluate the reprogramming of fixed points (P1). Their benchmark gathers 10 locally monotone BNs and 1 non-monotone one, that BoNesis cannot address. The dimension of the 10 BNs are respectively 14, 17, 18, 20, 28, 32, 53, 59, 66, and 75. For each of these models, a target marker for reprogramming has been defined from the corresponding published studies. Moreover, a subset of nodes have been declared as uncontrollable to avoid trivial solutions.
+In order to evaluate the scalability on realistic BNs, we use the benchmark constituted by <cite data-citet="Moon22"><a href="https://doi.org/10.1016/j.ejor.2021.10.019">Moon et al. (2022)</a></cite> to evaluate the reprogramming of fixed points (P1). Their benchmark gathers 10 locally monotone BNs and 1 non-monotone one, that BoNesis cannot address. The dimension of the 10 BNs are respectively 14, 17, 18, 20, 28, 32, 53, 59, 66, and 75. For each of these models, a target marker for reprogramming has been defined from the corresponding published studies. Moreover, a subset of nodes has been declared as uncontrollable to avoid trivial solutions.
 We used this benchmark to evaluate the scalability of the P1 and P3 implementation we propose in this paper.
 
 For these 10 models, we applied the P1 and P3 reprogramming for different maximum number of simultaneous perturbations (denoted $k$ in the previous sections), up to $k=6$. In each case, we measured the time for the first solution, for listing up to 100 solutions, and for listing all the solutions, with a timeout of 10 minutes. The experiments have been performed on an Intel(R) Xeon(R) processor at 3.3Ghz with 16BG of RAM.\
