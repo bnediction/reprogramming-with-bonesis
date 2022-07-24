@@ -904,7 +904,7 @@ The author would like to thank Kyungduk Moon and Kangbok Leee for stimulating di
 
 ### Software and data availability
 
-The software *BoNesis* is available at [github.com/bnediction/bonesis](https://github.com/bnediction/bonesis). Its use, sharing, and modification of this program and library is allowed for academic purpose only.
+The software *BoNesis* is available at [github.com/bnediction/bonesis](https://github.com/bnediction/bonesis). Its use, sharing, and modification are allowed for academic purpose only.
 The notebook, models, and instructions for reproducing the results are available at [github.com/bnediction/reprogramming-with-bonesis](https://github.com/bnediction/reprogramming-with-bonesis).
 
 ### Funding
