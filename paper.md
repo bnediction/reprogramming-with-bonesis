@@ -235,7 +235,7 @@ Given a configuration $x\in \mathbb B^n$, we say $x$ matches with a marker $M$, 
 Given a set of configurations $A\subseteq \mathbb B^n$, we say $A$ matches with a marker $M$ if and only if each of its configurations match with $M$ ($\forall x\in A, x\models M$).
 Given $k\in\mathbb N$, we denote by $\mathbb M^{\leq k}$ the sets of maps associating at most $k$ components among $\{1, \cdots, n\}$ to a Boolean value. 
 
-The objective of marker-reprogramming is to identify perturbations so that all the fixed points/attractors of the perturbed $f$ match with the marker $M$. The source-marker reprogramming then focuses on the fixed points/attractors reachable from a given initial configuration only, thus potentially requiring less perturbations.
+The objective of marker-reprogramming is to identify perturbations so that all the fixed points/attractors of the perturbed $f$ match with the marker $M$. The source-marker reprogramming then focuses on the fixed points/attractors reachable from a given initial configuration only, thus potentially requiring fewer perturbations.
 
 
 A very important aspect of marker reprogramming is that it accounts for the creation and deletion of attractors due to the perturbation. Thus, in general, the attractors of the reprogrammed BN are different from the attractors of the input (wild-type) BN.
@@ -248,7 +248,7 @@ In this section, we tackle the following instantiations of the reprogramming pro
 4. Source-marker reprogramming of attractors (*P4*).
 
 In each case, we briefly study the complexity of the associated decision problem (existence of a perturbation given the desired reprogramming property), and give the Python and command line recipe to identify the perturbations with *BoNesis*.
-The follow table summarizes the results, with the complexity in the locally-monotone case and command line usage:
+The following table summarizes the results, with the complexity in the locally-monotone case and command line usage:
 
 | Problem | Complexity | Command line |
 |:---:|:---|:---|
@@ -402,7 +402,7 @@ Adding the option `--allow-no-fixpoint` would return an empty perturbation as un
 ### Source-marker reprogramming of fixed points (P2)
 
 Given an initial configuration $z$, we identify the perturbations $P$ of at most $k$ components so that all the fixed points of $f/P$ that are reachable from $z$ in $f/P$ match with the given marker $M$.
-The associated decision problem can be expressed as the follow $\exists\forall$-expression, hence being at most in $\Sigma_2^{\mathrm P}$:
+The associated decision problem can be expressed as the following $\exists\forall$-expression, hence being at most in $\Sigma_2^{\mathrm P}$:
 
 \begin{equation}
 \exists P\in\mathbb M^k, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge \operatorname{reach}_P(z,x))\implies x\models M
@@ -677,7 +677,7 @@ list(marker_reprogramming_fixpoints(g, {"D": 1}, 2))
 ### Soure-marker reprograming of attractors (P4)
 
 Given an initial configuration $z$, we identify the perturbations $P$ of at most $k$ components so that the configurations of the all the attractors of $f/P$ that are reachable from $z$  match with the given marker $M$ (i.e., in each reachable attractor, the specified markers cannot oscillate).
-Thus, P4 is the same problem as P3, except that we focus only on attractors reachable from $z$, therefore potentially requiring less perturbations.
+Thus, P4 is the same problem as P3, except that we focus only on attractors reachable from $z$, therefore potentially requiring fewer perturbations.
 
 The associated decision problem can be expressed as follows:
 
