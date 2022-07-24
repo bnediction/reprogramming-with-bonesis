@@ -4,7 +4,7 @@ TAG=v0
 update:
 	jupytext --update paper.md --to ipynb --pre-commit-mode --execute
 sync:
-	jupytext --update paper.md --to ipynb --pre-commit-mode --execute
+	jupytext --sync paper.md --to ipynb --pre-commit-mode --execute
 source:
 	jupytext paper.ipynb --to myst
 
