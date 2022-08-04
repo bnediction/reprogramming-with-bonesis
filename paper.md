@@ -814,7 +814,7 @@ Indeed, fixed `C` to 1, ensures  in each case that `D` is fixed to 1.
 
 +++
 
-One can remark that having universal solutions for fixed point reprogramming of fixed points could be tackled by following a similar encoding that the reprogramming of attractors: by identifying perturbations which do not fulfill the property for at least one BN in the domain (the complement results in perturbations working for all the BNs):
+One can remark that having universal solutions for the reprogramming of fixed points could be tackled by following a similar encoding that the reprogramming of attractors: by identifying perturbations which do not fulfill the property for at least one BN in the domain (the complement results in perturbations working for all the BNs):
 
 ```{code-cell}
 def universal_marker_reprogramming_fixpoints(f, M, k):
