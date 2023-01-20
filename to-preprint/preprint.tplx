@@ -199,7 +199,7 @@
 \end{abstract}
 
 ((*- else -*))
-    ((( cell.source | makesupp | citation2latex | strip_files_prefix | convert_pandoc('markdown+tex_math_double_backslash', 'json',extra_args=[]) | resolve_references | convert_pandoc('json','latex'))))
+    ((( cell.source | makesupp | my_patch | citation2latex | strip_files_prefix | convert_pandoc('markdown+tex_math_double_backslash', 'json',extra_args=[]) | resolve_references | convert_pandoc('json','latex'))))
 ((*- endif *))
 ((* endblock markdowncell *))
 

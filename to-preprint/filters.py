@@ -56,6 +56,9 @@ def keywords(input):
 def sup2latex(text):
     return text.replace("<sup>", "$^\\text{").replace("</sup>","}$")
 
+def my_patch(text):
+    return text.replace("*Example.*", "\\paragraph{Example}")
+    return text
 
 if __name__ == "__main__":
     import sys
