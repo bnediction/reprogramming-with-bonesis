@@ -554,7 +554,7 @@ which is an $\exists\forall$-expression:
 \enspace.
 \end{equation}
 
-Because the domain of candidate perturbations $\mathbb M^{\leq k}$ is finite, one can thus first resolve the complementary problem, giving all bad perturbations, and returns its complement.
+Because the domain of candidate perturbations $\mathbb M^{\leq k}$ is finite, one can first resolve the complementary problem, giving all bad perturbations, and returns its complement.
 
 Notice that this approach is highly combinatorics, and is likely limited to identifying perturbations of small size. However, to our knowledge, this is the first implemented method which addresses the complement reprogramming of MP attractors, i.e., of the minimal trap spaces of the BN.
 
