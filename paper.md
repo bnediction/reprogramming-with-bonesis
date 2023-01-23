@@ -75,7 +75,7 @@ A BN $f$ is *locally monotone* whenever every of its local functions are *unate*
 
 *Example.* The BN $f$ of dimension $3$ with $f_1(x)=\neg x_2$, $f_2(x)=\neg x_1$, and $f_3(x) = \neg x_1\wedge x_2$ is locally monotone; and an instance of application is $f(000)=110$.
 
-Locally monotone BNs should not be confused with *monotone* BNs where a component appears in *all* local functions with the same sign. Monotone BNs are a particular case of locally monote BNs.
+Locally monotone BNs should not be confused with *monotone* BNs where a component appears in *all* local functions with the same sign. Monotone BNs are a particular case of locally-monotone BNs.
 
 ### Update modes
 
@@ -143,7 +143,7 @@ Therefore, a component with a $*$ value in an MP attractor $A$ indicates that th
 
 The computational complexity of decision problems related to minimal trap spaces has been extensively addressed in <cite data-citep="TrapSpaceComplexity">(<a href="https://doi.org/10.48550/arXiv.2212.12756">Moon et al., 2022b</a>)</cite> with different representations of Boolean networks.
 For the case of local functions represented with propositional logic, as we consider here, deciding whether a sub-hypercube is a trap space is coNP-complete problem, whereas deciding whether it is a *minimal* trap space is a coNP<sup>coNP</sup>-complete problem, i.e., equivalent to the decision of satisfiability of $\forall\exists$ expressions.
-In the case of *locally monotone* BNs, deciding whether a sub-hypercube is a trap space is in PTIME, whereas deciding whether it is a minimal trap spaces is a coNP-complete problem, i.e., equivalent to the decision of satisfiability of $\forall$-expressions.
+In the case of *locally-monotone* BNs, deciding whether a sub-hypercube is a trap space is in PTIME, whereas deciding whether it is a minimal trap spaces is a coNP-complete problem, i.e., equivalent to the decision of satisfiability of $\forall$-expressions.
 
 
 ### MP reachability of attractors
@@ -196,7 +196,7 @@ Currently, the domain of BNs $\mathbb F$ can be one of the following:
 
 *BoNesis* offers a Python programming interface to declare the dynamical properties over BNs, including reachability, fixed points and trap spaces. *BoNesis* relies on Answer-Set Programming (ASP) and the ASP solver [*clingo*](https://potassco.org/clingo) for the enumeration of solutions. ASP is a declarative logic programming framework for expressing combinatorial decision problems and enumerate their solutions, possibly with optimizations. ASP can be employed for efficiently solving $\exists$- and $\exists\forall$-expressions, thus having an expressiveness higher than classical SAT.
 
-We emphasize that *BoNesis* is currently restricted to locally monotone BNs only for which efficient logical encoding of domains of models are possible. Whereas it is a common assumption when modeling of biological systems (a node cannot be both an activator and inhibitor of a same other node), non-monotone BNs are also employed, and cannot be addressed with the current implementation.
+We emphasize that *BoNesis* is currently restricted to locally-monotone BNs only for which efficient logical encoding of domains of models are possible. Whereas it is a common assumption when modeling of biological systems (a node cannot be both an activator and inhibitor of a same other node), non-monotone BNs are also employed, and cannot be addressed with the current implementation.
 
 The usage of *BoNesis* Python programming interface and command line will be explained along with the code snippets provided in the next sections.
 
@@ -845,20 +845,20 @@ list(universal_marker_reprogramming_fixpoints(dom, {"D": 1}, 2))
 Note that in this implementation, we do not ensure the existence of a fixed point after reprogramming.  This is why the perturbation fixing only `A` to 1 is considered as a solution in our example:
 
 ```{code-cell} ipython3
+:nbconvert.display: true
+
 for i, f in enumerate(F):
     f["A"] = 1
     print(f"Attractors of BN {i} after fixing A to 1:", list(f.attractors()))
 ```
 
-As BNs 2 and 3 have no fixed points, they fulfill the criteria "all the fixed points match with marker `M`".
+As BNs 2 and 3 have no fixed point, they fulfill the criteria "all the fixed points match with marker `M`".
 
 +++
 
 ## Scalability
 
-+++
-
-In order to evaluate the scalability on realistic BNs, we use the benchmark constituted by <cite data-citet="Moon22"><a href="https://doi.org/10.1016/j.ejor.2021.10.019">Moon et al. (2022a)</a></cite> to evaluate the reprogramming of fixed points (P1). Their benchmark gathers 10 locally monotone BNs and 1 non-monotone one, that BoNesis cannot address. The dimension of the 10 BNs are respectively 14, 17, 18, 20, 28, 32, 53, 59, 66, and 75. For each of these models, a target marker for reprogramming has been defined from the corresponding published studies. Moreover, a subset of nodes has been declared as uncontrollable to avoid trivial solutions.
+In order to evaluate the scalability on realistic BNs, we use the benchmark constituted by <cite data-citet="Moon22"><a href="https://doi.org/10.1016/j.ejor.2021.10.019">Moon et al. (2022a)</a></cite> to evaluate the reprogramming of fixed points (P1). Their benchmark gathers 10 locally-monotone BNs and 1 non-monotone one, that BoNesis cannot address. The dimension of the 10 BNs are respectively 14, 17, 18, 20, 28, 32, 53, 59, 66, and 75. For each of these models, a target marker for reprogramming has been defined from the corresponding published studies. Moreover, a subset of nodes has been declared as uncontrollable to avoid trivial solutions.
 We used this benchmark to evaluate the scalability of the P1 and P3 implementation we propose in this paper.
 
 For these 10 models, we applied the P1 and P3 reprogramming for different maximum number of simultaneous perturbations (denoted $k$ in the previous sections), up to $k=6$. In each case, we measured the time for the first solution, for listing up to 100 solutions, and for listing all the solutions, with a timeout of 10 minutes. The experiments have been performed on an Intel(R) Xeon(R) processor at 3.3Ghz with 16BG of RAM.\
@@ -870,9 +870,7 @@ These experiments testify of the difference of complexity between P1 and P3, and
 Evaluating the scalability of P2 and P4 would require defining initial configurations which are meaningful for the different models, which are not available in the selected benchmark. Nevertheless, because the source constraint does not change the complexity classes, we can conjecture that their scalability should be comparable to P1 and P3 respectively.
 Moreover, having benchmarks at larger scale would be insightful, but none of them are available to the best of our knowledge. It should be noted *BoNesis* has been applied to do BN synthesis for models with 1,000 nodes <cite data-citep="bn-synthesis-ICTAI19">(<a href="https://doi.org/10.1109/ICTAI.2019.00014">Chevalier et al., 2019</a>)</cite>, suggesting a potential applicability of *BoNesis* for the reprogramming of large BNs.
 
-+++
-
-As stressed in the introduction, there exists only tools addressing P1 to compare with. The experiments of <cite data-citet="Moon22"><a href="https://doi.org/10.1016/j.ejor.2021.10.019">Moon et al. (2022a)</a></cite> show that their bilevel integer programming-based method systematically outperforms the ASP implementation of pyActoNet <cite data-citep="Biane2018">(<a href="https://doi.org/10.1109/TCBB.2018.2889102">Biane et al., 2018</a>)</cite>. On the same benchmark, *BoNesis* performed either similarly or in shorter time, except that it is limited to locally monotone BNs only.
+As stressed in the introduction, there exists only tools addressing P1 to compare with. The experiments of <cite data-citet="Moon22"><a href="https://doi.org/10.1016/j.ejor.2021.10.019">Moon et al. (2022a)</a></cite> show that their bilevel integer programming-based method systematically outperforms the ASP implementation of pyActoNet <cite data-citep="Biane2018">(<a href="https://doi.org/10.1109/TCBB.2018.2889102">Biane et al., 2018</a>)</cite>. On the same benchmark, *BoNesis* performed either similarly or in shorter time, albeit limited to locally-monotone BNs only.
 
 +++
 
@@ -884,7 +882,7 @@ Nevertheless, the snippets shown in this paper can be extended to account for mo
 
 It should be noted that the candidate combinations of perturbations are computed solely based on the Boolean dynamics, and do not account for experimental feasibility, e.g., in the scope of models of biological systems.
 Future work may consider optimization or prioritization of perturbations based on such extra information.
-Currently, *BoNesis* enables specifying components which must not be perturbed (`exclude` option for the `Some` object, or `--exclude` for the command line, taking a list of components which should be excluded from the candidate perturbations).
+Currently, *BoNesis* enables specifying uncontrollable components which must not be perturbed (`exclude` option for the `Some` object, or `--exclude` for the command line, taking a list of components which should be excluded from the candidate perturbations).
 
 We considered for problems, referred to as P1, P2, P3, P4, where P1-P2 relate to the reprogramming of fixed points, and P3-P4 to the reprogramming of MP attractors (i.e., minimal trap spaces).
 The computational complexity of P1-P2 allows an efficient implementation using Answer-Set Programming (ASP), whereas the one of P3-P4 necessitate working around complementary solution to fit into the expressiveness of ASP, limiting their scalability. Future work may explore alternative implementations using different logic frameworks.
@@ -893,7 +891,10 @@ The identified perturbations may destroy and create new fixed points and attract
 
 Besides the four reprogramming problems tackled in this paper, an additional variant would be the marker-reprogramming of fixed points which also ensures the absence of cyclic attractors. Note that its complexity is equivalent to the one of P3/P4, i.e., it can be expressed as a $\exists\forall\exists$-expression. This problem may be relevant for modeling cases where cyclic attractors do not make sense. The programming interface of *BoNesis* do not permit an efficient encoding of this problem at the moment.
 
+This paper focused on permanent perturbations, i.e., enforcing the value of one or several components constantly over time, independently of the state of the system.
 *Sequential* reprogramming <cite data-citep="Mandon2017,Pardo2021">(<a href="https://doi.org/10.1007/978-3-319-67471-1_11">Mandon et al., 2017</a>,<a href="https://doi.org/10.1016/j.tcs.2021.03.013">Pardo et al., 2021</a>)</cite> consists in applying sets of perturbations at different time. This can lead to reducing the overall number of component to perturb, by taking advantage of the natural transient dynamics of the system.
+Sequential reprogramming brings the BN reprogramming settings closer to classical control theory, as the
+control can depend both on time and state of the system.
 Having fixed a number of steps, say $m$, the reprogramming problems consists in identifying $m$ sets of perturbations which will be applied in sequence, and their application may be restricted to attractors only
 <cite data-citep="Mandon2019">(<a href="https://doi.org/10.1007/978-3-030-31304-3_1">Mandon et al., 2019</a>)</cite>.
 Interestingly in that case, having fixed the number of reprogramming steps, the computational complexity remains identical to the  one-step reprogramming with locally-monotone BNs, due to the PTIME complexity of the reachability.
@@ -911,8 +912,7 @@ $$\exists P,Q\in\mathbb M^{\leq k}, \forall x,y\in\mathbb B^n,
 \operatorname{IN-ATTRACTOR}_P(x) \Rightarrow
      \operatorname{reach}_Q(x,y) \Rightarrow
      \operatorname{IN-ATTRACTOR}_Q(y) \Rightarrow y \models M$$
-
-which, by detailing the $\operatorname{IN-ATTRACTOR}$ property, leads to an $\exists\forall\exists$-expression, as for the single-step reprogramming.
+Accounting for $\operatorname{IN-ATTRACTOR}$, this leads to an $\exists\forall\exists$-expression, as for the single-step reprogramming.
 Future work may then investigate the encoding of sequential reprogramming with *BoNesis*.
 
 Finally, we demonstrated how *BoNesis* can be employed to reason on the reprogramming of BNs, leading to either solutions that work for at least one BN of the ensemble, or working on each of them (universal reprogramming). We believe that reasoning on ensemble of models is a promising direction to address the robustness of predictions in the scope of applications in systems biology.

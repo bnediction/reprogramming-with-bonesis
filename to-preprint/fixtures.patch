@@ -1,0 +1,13 @@
+--- paper.tex	2023-01-23 13:24:48.428593478 +0100
++++ paper-fixed.tex	2023-01-23 13:25:29.468394360 +0100
+@@ -1981,9 +1981,8 @@
+ Attractors of BN 1 after fixing A to 1: [\{'A': 1, 'B': 1, 'C': 1, 'D': 1\}]
+ Attractors of BN 2 after fixing A to 1: [\{'A': 1, 'B': '*', 'C': '*', 'D': '*'\}]
+ Attractors of BN 3 after fixing A to 1: [\{'A': 1, 'B': '*', 'C': '*', 'D': '*'\}]
+-
+     \end{Verbatim}
+-
++\noindent
+ As BNs 2 and 3 have no fixed point, they fulfill the criteria ``all the
+ fixed points match with marker \texttt{M}''.
+ \hypertarget{scalability}{%
