@@ -17,6 +17,17 @@
 \providecommand\mathplus{+}
 \usepackage{upgreek}
 
+\usepackage{tikz}
+\usepackage[firstpage=true]{background}
+\SetBgScale{1}
+\SetBgAngle{0}
+\SetBgOpacity{1}
+\SetBgContents{\begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=north east,shift={(-1,-0.6)}]
+            at (current page.north east) {
+            \orighref{https://doi.org/10.24072/pci.mcb.100183}{\includegraphics[height=3cm]{{badge_PCI_Math_Comp_Biol.png}}}};
+\end{tikzpicture}}
+
 
 \usepackage{url,hyperref,microtype}
 \usepackage{xspace}
