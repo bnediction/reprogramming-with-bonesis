@@ -211,7 +211,7 @@ This is an *executable paper* which demonstrates the use of *BoNesis* for the re
 Alternatively, the notebook can be executed within the CoLoMoTo Docker distribution <cite data-citep="ColomotoDocker">(<a href="http://dx.doi.org/10.3389/fphys.2018.00680">Naldi et al., 2018</a>)</cite>, using the Docker image `colomoto/colomoto-docker:2023-02-01`, which can be launched as follows:
 ```
 pip install colomoto-docker
-colomoto-docker -V 2023-02-01
+colomoto-docker -V 2023-03-01
 ```
 then open [http://127.0.0.1:8888](http://127.0.0.1:8888) and upload the notebook from the Jupyter interface.
 See [github.com/bnediction/reprogramming-with-bonesis](https://github.com/bnediction/reprogramming-with-bonesis) for further help.
@@ -925,7 +925,7 @@ The author would like to thank Kyungduk Moon and Kangbok Lee for stimulating dis
 
 ### Software and data availability
 
-The software *BoNesis* is available at [github.com/bnediction/bonesis](https://github.com/bnediction/bonesis). The code of this paper uses version 0.4.92.
+The software *BoNesis* is available at [github.com/bnediction/bonesis](https://github.com/bnediction/bonesis). The code of this paper uses version 0.4.93.
 The notebook, models, and instructions for reproducing the results are available at [github.com/bnediction/reprogramming-with-bonesis](https://github.com/bnediction/reprogramming-with-bonesis).
 
 ### Funding

@@ -1,0 +1,7 @@
+channels:
+  - colomoto
+  - potassco
+  - conda-forge
+dependencies:
+  - bonesis
+  - graphviz
