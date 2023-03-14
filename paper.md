@@ -925,7 +925,7 @@ The author would like to thank Kyungduk Moon and Kangbok Lee for stimulating dis
 
 ### Software and data availability
 
-The software *BoNesis* is available at [github.com/bnediction/bonesis](https://github.com/bnediction/bonesis). The code of this paper uses version 0.4.93 (archived at [doi:10.5281/zenodo.7657487](https://doi.org/10.5281/zenodo.7657487])).
+The software *BoNesis* is available at [github.com/bnediction/bonesis](https://github.com/bnediction/bonesis). The code of this paper uses version 0.4.93 (archived at [doi:10.5281/zenodo.7657487](https://doi.org/10.5281/zenodo.7657487)).
 The notebook, models, and instructions for reproducing the results are available at [github.com/bnediction/reprogramming-with-bonesis](https://github.com/bnediction/reprogramming-with-bonesis) (archived at [doi:10.5281/zenodo.7733095](https://doi.org/10.5281/zenodo.7733095)).
 
 ### Funding
