@@ -315,8 +315,7 @@ and by \citet{Moon22}, based on bilevel integer programming. To our
 knowledge, none of the other problems have been addressed completely in
 the literature.
 
-The software \emph{BoNesis}
-(\href{https://github.com/bnediction/bonesis}{github.com/bnediction/bonesis})
+The software \emph{BoNesis}\footnote{\url{https://github.com/bnediction/bonesis}}
 provides a generic environment for the automated construction of BNs
 with MP update mode from specified structural and dynamical properties.
 The properties are translated into a logic satisfiability problem,
@@ -333,7 +332,7 @@ strategies.
 In this paper, we show how the software \emph{BoNesis} can be employed
 to solve P1, P2, P3, and P4 in the scope of \emph{locally-monotone} BNs,
 where each local function is
-\emph{\href{https://en.wikipedia.org/wiki/Unate_function}{unate}}, i.e.,
+\emph{{unate}}\footnote{\url{https://en.wikipedia.org/wiki/Unate_function}}, i.e.,
 where each local function never depends on both positively and
 negatively from a same component. Locally-monotone BNs cover all the
 models where it assumed that a node cannot be both an activator and
@@ -364,11 +363,10 @@ This paper is \emph{executable}: it contains snippets of Python code
 employing \emph{BoNesis} to demonstrate its usage on small examples,
 including command line usage. Instructions for its execution are given
 at the beginning of the \emph{Results} section. It can be visualized
-online at
-\href{https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb}{nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb}
-and interactively executed either online at
-\href{https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/release}{mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/release}
-using \href{https://mybinder.org/}{mybinder} online free service, or
+online\footnote{\url{https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb}}
+and interactively executed either online\footnote{%
+\url{https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/release?urlpath=tree/paper.ipynb}}
+using \emph{mybinder} online free service, or
 locally, following instructions given later in this paper.
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -514,7 +512,7 @@ whether coNP = NP.
 
 Then, the alternation of quantifiers makes the problem climbing into the
 so-called polynomial hierarchy\footnote{See
-  \href{https://en.wikipedia.org/wiki/Polynomial_hierarchy}{en.wikipedia.org/wiki/Polynomial\_hierarchy}}.
+  \url{https://en.wikipedia.org/wiki/Polynomial_hierarchy}}.
 \(\exists\ldots\)-expressions are \(\Sigma_k^{\mathrm P}\)-complete
 problems, where \(k\) is the number of alternating quantifiers (starting
 with \(\exists\)), while \(\forall\ldots\)-expressions are
@@ -659,11 +657,9 @@ property of \(x\) belonging to an attractor of the perturbed BN
 \hypertarget{bonesis}{%
 \subsection{BoNesis}\label{bonesis}}
 
-\emph{BoNesis}
-(\href{https://github.com/bnediction/bonesis}{github.com/bnediction/bonesis})
-is a Python library which has been primarily designed for identifying
-BNs satisfying user-given dynamical properties among a given domain of
-BNs and with the MP update mode. It takes as input (1) a domain of BNs
+\emph{BoNesis} is a Python library which has been primarily designed for identifying BNs satisfying
+user-given dynamical properties among a given domain of BNs and with the MP update mode. It takes as
+input (1) a domain of BNs
 \(\mathbb F\), and (2) a set of Boolean dynamical properties \(\phi\),
 and can enumerate the BNs \(f \in \mathbb F\) such that
 \(f\models \phi\), i.e., \(f\) verifies the properties \(\phi\).
@@ -698,7 +694,7 @@ Currently, the domain of BNs \(\mathbb F\) can be one of the following:
 \emph{BoNesis} offers a Python programming interface to declare the
 dynamical properties over BNs, including reachability, fixed points and
 trap spaces. \emph{BoNesis} relies on Answer-Set Programming (ASP) and
-the ASP solver \href{https://potassco.org/clingo}{\emph{clingo}} for the
+the ASP solver \emph{clingo}\footnote{\url{https://potassco.org/clingo}} for the
 enumeration of solutions. ASP is a declarative logic programming
 framework for expressing combinatorial decision problems and enumerate
 their solutions, possibly with optimizations. ASP can be employed for
@@ -726,15 +722,13 @@ supports only locally-monotone BNs.
 
 This is an \emph{executable paper} which demonstrates the use of
 \emph{BoNesis} for the reprogramming of BNs. The corresponding notebook
-can be downloaded from
-\href{https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb}{nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb}.
-Its execution requires the \href{https://jupyter.org/}{Jupyter notebook}
-system, \href{https://python.org}{Python}, and the Python package
-\texttt{bonesis} to be installed, see
-\href{https://github.com/bnediction/bonesis}{github.com/bnediction/bonesis}
-for instructions. Alternatively, the notebook can be executed within the
+can be downloaded from \url{https://doi.org/10.5281/zenodo.7733095}.
+Its execution requires the \emph{Jupyter notebook}
+system, \emph{Python}, and the Python package
+\texttt{bonesis} to be installed.
+Alternatively, the notebook can be executed within the
 CoLoMoTo Docker distribution \citep{ColomotoDocker}, using the Docker
-image \texttt{colomoto/colomoto-docker:2023-02-01}, which can be
+image \texttt{colomoto/colomoto-docker:2023-03-01}, which can be
 launched as follows:
 
 \begin{verbatim}
@@ -743,9 +737,11 @@ colomoto-docker -V 2023-03-01
 \end{verbatim}
 
 then open \url{http://127.0.0.1:8888} and upload the notebook from the
-Jupyter interface. See
-\href{https://github.com/bnediction/reprogramming-with-bonesis}{github.com/bnediction/reprogramming-with-bonesis}
-for further help.
+Jupyter interface.
+The code provided in this article requires the following setup:
+
+\medskip
+
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}1}]:} \PY{c+ch}{\PYZsh{}!pip install \PYZhy{}\PYZhy{}user bonesis  \PYZsh{} uncomment to install bonesis}
@@ -761,6 +757,8 @@ for further help.
         \PY{k+kn}{from} \PY{n+nn}{colomoto}\PY{n+nn}{.}\PY{n+nn}{minibn} \PY{k+kn}{import} \PY{n}{BooleanNetwork}
 \end{Verbatim}
 \end{small}
+
+\medskip
 
 Alternatively, the computation of reprogramming perturbations from
 single Boolean networks can be performed using the command line
@@ -837,8 +835,8 @@ P4 & \(\exists\forall\exists\) &
 where \texttt{{[}base{]}} is the command line
 \texttt{bonesis-reprogramming\ model.bnet\ M\ k}, with
 \texttt{model.bnet} the path to a file in
-\href{http://colomoto.org/biolqm/doc/format-bnet.html}{BooleanNet
-format}, \texttt{M} specifies the marker as a JSON map, \texttt{k} is
+BooleanNet
+format\footnote{\url{http://colomoto.org/biolqm/doc/format-bnet.html}}, \texttt{M} specifies the marker as a JSON map, \texttt{k} is
 the maximum number of simultaneous perturbations, and \texttt{z} is the
 initial configuration as a JSON map. For instance,
 
@@ -880,6 +878,7 @@ can be declared as follows, where \texttt{f} is a BN, \texttt{M} the
 marker (specified as Python dictionary associating a subset of
 components to a Boolean value), and \texttt{k} the maximum number of
 components that can be perturbed (at most \(n\)):
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{:} \PY{n}{BooleanNetwork}\PY{p}{,} 
@@ -897,6 +896,7 @@ components that can be perturbed (at most \(n\)):
             \PY{k}{return} \PY{n}{P}\PY{o}{.}\PY{n}{assignments}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 The line \texttt{bo\ =\ bonesis.BoNesis(f)} instantiates a
 \emph{BoNesis} object \texttt{bo} with the domain \texttt{f}. In this
@@ -937,6 +937,7 @@ point can be lifted with the option \texttt{-\/-allow-no-fixpoint}.
 We illustrate the marker-reprogramming of fixed points on a small toy BN
 example, which has no fixed point. In the following, we use
 \texttt{colomoto.minibn.BooleanNetwork} to define this BN.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}4}]:} \PY{n}{f} \PY{o}{=} \PY{n}{BooleanNetwork}\PY{p}{(}\PY{p}{\PYZob{}}
@@ -956,15 +957,18 @@ example, which has no fixed point. In the following, we use
         C <- !A\&B
 \end{Verbatim}
 \end{small}
+\medskip
 This example BN has two components in negative feedback: they will
 oscillate forever. The state of the third component \texttt{C} is then
 determined by the state of the oscillating components. The following
 command returns its influence graph:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}5}]:} \PY{n}{f}\PY{o}{.}\PY{n}{influence\PYZus{}graph}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 
     
@@ -977,11 +981,13 @@ command returns its influence graph:
 
 With the (fully) asynchronous update mode, the system has a single
 attractor, consisting of all the configurations of the network.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}6}]:} \PY{n}{f}\PY{o}{.}\PY{n}{dynamics}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{asynchronous}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 
     
@@ -993,8 +999,9 @@ attractor, consisting of all the configurations of the network.
     
 
 Recall that the fixed points are identical in asynchronous and MP. We
-use \href{https://github.com/bnediction/mpbn}{\texttt{mpbn}} to analyze
+use \texttt{mpbn}\footnote{\url{https://github.com/bnediction/mpbn}} to analyze
 the dynamical properties with the MP update mode:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}7}]:} \PY{n}{mf} \PY{o}{=} \PY{n}{mpbn}\PY{o}{.}\PY{n}{MPBooleanNetwork}\PY{p}{(}\PY{n}{f}\PY{p}{)}
@@ -1020,6 +1027,7 @@ the dynamical properties with the MP update mode:
 {\color{outcolor}Out[{\color{outcolor}8}]:} [\{'A': '*', 'B': '*', 'C': '*'\}]
 \end{Verbatim}
 \end{small}
+\medskip
 Indeed, the network has no fixed points, and its attractor is the full
 hypercube of dimension 3.
 
@@ -1027,6 +1035,7 @@ Using the \texttt{marker\_reprogramming\_fixpoints} snippet defined
 above, we identify all perturbations of at most 2 components which
 ensure that (1) all the fixed points have \texttt{C} active, and (2) at
 least one fixed point exists:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}9}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1039,6 +1048,7 @@ least one fixed point exists:
 {\color{outcolor}Out[{\color{outcolor}9}]:} [\{'A': 0\}, \{'C': 1, 'B': 0\}, \{'A': 1, 'C': 1\}, \{'B': 1, 'C': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 Indeed, fixing \texttt{A} to 0 breaks the negative feedback, and make
 \texttt{B} converge to 1. There, \texttt{C} converges to state 1. Then,
 remark that fixing \texttt{C} to 1 is not enough to fulfill the
@@ -1053,6 +1063,7 @@ In our \emph{BoNesis} code snippet defined above, by default we ensure
 that the perturbed BN possesses at least one fixed point. When relaxing
 this constraint, we obtain that the empty perturbation is the (unique)
 minimal solution, as \texttt{f} has no fixed point.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}10}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ensure\PYZus{}exists}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
@@ -1065,9 +1076,11 @@ minimal solution, as \texttt{f} has no fixed point.
 {\color{outcolor}Out[{\color{outcolor}10}]:} [\{\}]
 \end{Verbatim}
 \end{small}
+\medskip
 In the following, we demonstrate how to perform the same computation
 with the command line. By default, the reprogramming of fixed points
 adds the constraint that at least one fixed point must exist.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}11}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{example1.bnet}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{fp}\PY{p}{:}
@@ -1098,6 +1111,7 @@ C, !A\&B
 \{'B': 1, 'C': 1\}
 
     \end{Verbatim}
+\medskip
 
 Adding the option \texttt{-\/-allow-no-fixpoint} would return an empty
 perturbation as unique minimal solution.
@@ -1138,6 +1152,7 @@ With the \emph{BoNesis} Python interface, this reprogramming property is
 declared as follows, where \texttt{f} is a BN, \texttt{z} the initial
 configuration (Python dictionary), \texttt{M} the marker, and \texttt{k}
 the maximum number of components that can be perturbed (at most \(n\)):
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}13}]:} \PY{k}{def} \PY{n+nf}{source\PYZus{}marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{:} \PY{n}{BooleanNetwork}\PY{p}{,}
@@ -1156,6 +1171,7 @@ the maximum number of components that can be perturbed (at most \(n\)):
              \PY{k}{return} \PY{n}{P}\PY{o}{.}\PY{n}{assignments}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 Compared to the previous code snippet, this function relies on specific
 operators to restrict the properties to the fixed point reachable from
@@ -1196,6 +1212,7 @@ the option \texttt{-\/-allow-no-fixpoint}.
 \paragraph{Example}
 
 Let us consider the following toy BN with two positive feedback cycles:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}14}]:} \PY{n}{f} \PY{o}{=} \PY{n}{BooleanNetwork}\PY{p}{(}\PY{p}{\PYZob{}}
@@ -1207,6 +1224,7 @@ Let us consider the following toy BN with two positive feedback cycles:
          \PY{n}{f}\PY{o}{.}\PY{n}{influence\PYZus{}graph}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 
     
@@ -1220,12 +1238,14 @@ Let us consider the following toy BN with two positive feedback cycles:
 This BN has 3 fixed points, 2 of which are reachable from the
 configuration where \texttt{A} and \texttt{B} are active, and \texttt{C}
 and \texttt{D} inactive:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}15}]:} \PY{n}{z} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{B}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{\PYZcb{}}
          \PY{n}{f}\PY{o}{.}\PY{n}{dynamics}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{asynchronous}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{init}\PY{o}{=}\PY{n}{z}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 
     
@@ -1236,6 +1256,7 @@ and \texttt{D} inactive:
     \end{figure}
     
 
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}16}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{mpbn}\PY{o}{.}\PY{n}{MPBooleanNetwork}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{o}{.}\PY{n}{fixedpoints}\PY{p}{(}\PY{p}{)}\PY{p}{)}
@@ -1262,6 +1283,7 @@ and \texttt{D} inactive:
 {\color{outcolor}Out[{\color{outcolor}17}]:} [\{'A': 1, 'B': 1, 'C': 1, 'D': 0\}, \{'A': 1, 'B': 1, 'C': 0, 'D': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 Let us compare the results of the global marker-reprogramming of fixed
 points (P1) with the source-marker reprogramming of fixed points (P2),
 the objective being to have fixed points having \texttt{C} active. In
@@ -1269,6 +1291,7 @@ the first case, putting aside the perturbation of \texttt{C}, this
 necessitates to act on either \texttt{A} or \texttt{B} to prevent the
 existence of the fixed points where \texttt{A}, \texttt{B} and
 \texttt{C} are inactive:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}18}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1281,8 +1304,10 @@ existence of the fixed points where \texttt{A}, \texttt{B} and
 {\color{outcolor}Out[{\color{outcolor}18}]:} [\{'A': 1, 'D': 0\}, \{'B': 1, 'D': 0\}, \{'C': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 Considering only the fixed points reachable from the configuration
 \texttt{z}, there is no need to act on \texttt{A} or \texttt{B}:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}19}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{source\PYZus{}marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1295,9 +1320,11 @@ Considering only the fixed points reachable from the configuration
 {\color{outcolor}Out[{\color{outcolor}19}]:} [\{'D': 0\}, \{'C': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 The command line program \texttt{bonesis-reprogramming} can perform P2
 by specifying the \texttt{-\/-rechable-from} option giving the initial
 configuration in JSON format:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}20}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{example2.bnet}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{fp}\PY{p}{:}
@@ -1381,6 +1408,7 @@ With the \emph{BoNesis} Python interface, this reprogramming property is
 declared as follows, where \texttt{f} is a BN, \texttt{M} the marker,
 and \texttt{k} the maximum number of components that can be perturbed
 (at most \(n\)):
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}22}]:} \PY{k}{def} \PY{n+nf}{marker\PYZus{}reprogramming}\PY{p}{(}\PY{n}{f}\PY{p}{:} \PY{n}{BooleanNetwork}\PY{p}{,}
@@ -1395,6 +1423,7 @@ and \texttt{k} the maximum number of components that can be perturbed
              \PY{k}{return} \PY{n}{coP}\PY{o}{.}\PY{n}{complementary\PYZus{}assignments}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 The idea of the above code snippet is to declare the property of being a
 bad perturbation (\texttt{coP}). In the context of this perturbation, we
@@ -1423,6 +1452,7 @@ number of perturbations.
 \paragraph{Example}
 
 Let us consider the following BN:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}23}]:} \PY{n}{f} \PY{o}{=} \PY{n}{mpbn}\PY{o}{.}\PY{n}{MPBooleanNetwork}\PY{p}{(}\PY{p}{\PYZob{}}
@@ -1435,6 +1465,7 @@ Let us consider the following BN:
          \PY{n}{f}\PY{o}{.}\PY{n}{influence\PYZus{}graph}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 
     
@@ -1450,6 +1481,7 @@ states. Whenever \texttt{A} is active (and \texttt{B} inactive) then
 \texttt{C} will oscillate, otherwise it stabilizes to 0. In each case
 \texttt{D} and \texttt{E} oscillate. This lead to the following MP
 attractors:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}24}]:} \PY{n}{tabulate}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{attractors}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
@@ -1464,9 +1496,11 @@ attractors:
          1  1  0  *  *  *
 \end{Verbatim}
 \end{small}
+\medskip
 Let us say that our objective is to reprogram the BN such that all the
 attractors of the component \texttt{C} fixed to 1. The reprogramming of
 fixed points (P1) gives the following solutions:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}25}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
@@ -1479,8 +1513,10 @@ fixed points (P1) gives the following solutions:
 {\color{outcolor}Out[{\color{outcolor}25}]:} [\{'D': 0\}, \{'C': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 Putting aside the trivial solution of perturbing \texttt{C}, let us
 analyze the BN perturbed with the \texttt{D} forced to 0:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}26}]:} \PY{n}{pf} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
@@ -1497,6 +1533,7 @@ analyze the BN perturbed with the \texttt{D} forced to 0:
          0  1  0  1  0  0
 \end{Verbatim}
 \end{small}
+\medskip
 The (only) fixed point of the network indeed has \texttt{C} active.
 However, it possesses another (cyclic) attractor, where \texttt{C} is
 inactive. This example points out that focusing on fixed point
@@ -1506,6 +1543,7 @@ sufficient to ensure that all the attractors show the desired marker.
 The complete attractor reprogramming returns that the perturbation of
 \texttt{D} must be coupled with a perturbation of \texttt{A} or
 \texttt{B}, in this case to destroy the cyclic attractor.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}27}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
@@ -1518,7 +1556,9 @@ The complete attractor reprogramming returns that the perturbation of
 {\color{outcolor}Out[{\color{outcolor}27}]:} [\{'C': 1\}, \{'D': 0, 'B': 0\}, \{'D': 0, 'A': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 The same results can be obtained using the command line as follows.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}28}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{example3.bnet}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{fp}\PY{p}{:}
@@ -1539,11 +1579,13 @@ The same results can be obtained using the command line as follows.
 \{'D': 0, 'A': 1\}
 
     \end{Verbatim}
+\medskip
 
 In other cases, the reprogramming of attractors may also lead to fewer
 required perturbations than focusing on fixed points, provided we
 enforce the existence of at least one fixed point. This can be
 illustrated with the following example:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}30}]:} \PY{n}{g} \PY{o}{=} \PY{n}{mpbn}\PY{o}{.}\PY{n}{MPBooleanNetwork}\PY{p}{(}\PY{p}{\PYZob{}}
@@ -1555,6 +1597,7 @@ illustrated with the following example:
          \PY{n}{g}\PY{o}{.}\PY{n}{influence\PYZus{}graph}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 
     
@@ -1567,6 +1610,7 @@ illustrated with the following example:
 
 Unperturbed, this network has a single cyclic attractor, as \texttt{A}
 and \texttt{B} are in a sustained oscillation.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}31}]:} \PY{n}{tabulate}\PY{p}{(}\PY{n}{g}\PY{o}{.}\PY{n}{attractors}\PY{p}{(}\PY{p}{)}\PY{p}{)}
@@ -1580,9 +1624,11 @@ and \texttt{B} are in a sustained oscillation.
          0  *  *  *  *
 \end{Verbatim}
 \end{small}
+\medskip
 Enforcing that all attractors have \texttt{D} fixed to 1 can be achieved
 either by perturbing \texttt{A}, or by perturbing only \texttt{C},
 letting \texttt{A} and \texttt{B} oscillate.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}32}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1595,9 +1641,11 @@ letting \texttt{A} and \texttt{B} oscillate.
 {\color{outcolor}Out[{\color{outcolor}32}]:} [\{'A': 1\}, \{'C': 1\}, \{'D': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 However, besides the forced activation of \texttt{A}, ensuring that all
 and at least one fixed point have \texttt{D} active always requires
 perturbing at least two components.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}33}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1658,6 +1706,7 @@ With the \emph{BoNesis} Python interface, this reprogramming property is
 declared as follows, where \texttt{f} is a BN, \texttt{z} the initial
 configuration, \texttt{M} the marker, and \texttt{k} the maximum number
 of components that can be perturbed (at most \(n\)):
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}34}]:} \PY{k}{def} \PY{n+nf}{source\PYZus{}marker\PYZus{}reprogramming}\PY{p}{(}\PY{n}{f}\PY{p}{:} \PY{n}{BooleanNetwork}\PY{p}{,}
@@ -1674,6 +1723,7 @@ of components that can be perturbed (at most \(n\)):
              \PY{k}{return} \PY{n}{coP}\PY{o}{.}\PY{n}{complementary\PYZus{}assignments}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{small}
+\medskip
 
 The above code snippet is very similar to the previous
 \texttt{marker\_reprogramming}, with the addition of the
@@ -1701,6 +1751,7 @@ where \texttt{A} is fixed to 1 and other nodes to 0, the reprogramming
 required to make all attractors have \texttt{C} fixed to 1 consists only
 of fixing \texttt{D} to 0. Note that in the specific example, the
 reprogramming of reachable fixed point would give an equivalent result.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}35}]:} \PY{n}{z} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{zero}\PY{p}{(}\PY{p}{)}
@@ -1715,7 +1766,9 @@ reprogramming of reachable fixed point would give an equivalent result.
 {\color{outcolor}Out[{\color{outcolor}35}]:} [\{'D': 0\}, \{'C': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 The same results can be obtained using the command line as follows.
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}36}]:} \PY{o}{!}bonesis\PYZhy{}reprogramming\PY{+w}{ }example3.bnet\PY{+w}{ }\PY{l+s+s1}{\PYZsq{}\PYZob{}\PYZdq{}C\PYZdq{}: 1\PYZcb{}\PYZsq{}}\PY{+w}{ }\PY{l+m}{3}\PY{+w}{ }\PY{err}{\PYZbs{}}
@@ -1779,6 +1832,7 @@ obtain that the returned perturbations are reprogramming solutions
 Let us illustrate the ensemble reprogramming with the following example.
 First, let us define an influence graph to delimit the domain of
 admissible BNs:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}37}]:} \PY{n}{dom} \PY{o}{=} \PY{n}{bonesis}\PY{o}{.}\PY{n}{InfluenceGraph}\PY{p}{(}\PY{p}{[}
@@ -1791,6 +1845,7 @@ admissible BNs:
 \end{Verbatim}
 \end{small}
 
+\medskip
 
     
     \noindent
@@ -1802,6 +1857,7 @@ admissible BNs:
 
 This domain encloses all the BNs having exactly (\texttt{exact=True})
 the specified influence graph, 4 distinct BNs in this case:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}38}]:} \PY{n}{dom}\PY{o}{.}\PY{n}{canonic} \PY{o}{=} \PY{k+kc}{True} \PY{c+c1}{\PYZsh{} we set canonic encoding for enumerating BNs}
@@ -1821,7 +1877,9 @@ the specified influence graph, 4 distinct BNs in this case:
          3  1  C  A\&!B  C
 \end{Verbatim}
 \end{small}
+\medskip
 Let us explore the attractors of each individual BNs:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}39}]:} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{f} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{F}\PY{p}{)}\PY{p}{:}
@@ -1837,12 +1895,14 @@ Attractors of BN 2: [\{'A': 0, 'B': 0, 'C': 0, 'D': 0\}]
 Attractors of BN 3: [\{'A': 1, 'B': '*', 'C': '*', 'D': '*'\}]
 
     \end{Verbatim}
+\medskip
 
 In this example, we focus on reprogramming the attractors so that the
 component \texttt{D} is fixed to 1.
 
 On the one hand, when reprogramming fixed points only, because one BN
 already verifies this property, the empty perturbation is a solution:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}40}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{dom}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1855,8 +1915,10 @@ already verifies this property, the empty perturbation is a solution:
 {\color{outcolor}Out[{\color{outcolor}40}]:} [\{\}]
 \end{Verbatim}
 \end{small}
+\medskip
 On the other hand, the reprogramming of attractors returns solution that
 work on every BN:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}41}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{marker\PYZus{}reprogramming}\PY{p}{(}\PY{n}{dom}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
@@ -1869,6 +1931,7 @@ work on every BN:
 {\color{outcolor}Out[{\color{outcolor}41}]:} [\{'C': 1\}, \{'D': 1\}, \{'B': 0, 'A': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 Indeed, fixed \texttt{C} to 1, ensures in each case that \texttt{D} is
 fixed to 1.
 The computation of universal solutions for the reprogramming of fixed
@@ -1876,6 +1939,7 @@ points can be tackled by following a similar encoding than the
 reprogramming of attractors, i.e., by identifying perturbations which do
 not fulfill the property for at least one BN in the domain (the
 complement results in perturbations working for all the BNs):
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}42}]:} \PY{k}{def} \PY{n+nf}{universal\PYZus{}marker\PYZus{}reprogramming\PYZus{}fixpoints}\PY{p}{(}\PY{n}{f}\PY{p}{:} \PY{n}{BooleanNetwork}\PY{p}{,}
@@ -1903,9 +1967,11 @@ complement results in perturbations working for all the BNs):
 {\color{outcolor}Out[{\color{outcolor}43}]:} [\{'C': 1\}, \{'A': 1\}, \{'D': 1\}]
 \end{Verbatim}
 \end{small}
+\medskip
 Note that in this implementation, we do not ensure the existence of a
 fixed point after reprogramming. This is why the perturbation fixing
 only \texttt{A} to 1 is considered as a solution in our example:
+\medskip
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}44}]:} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{f} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{F}\PY{p}{)}\PY{p}{:}
@@ -1921,6 +1987,7 @@ Attractors of BN 1 after fixing A to 1: [\{'A': 1, 'B': 1, 'C': 1, 'D': 1\}]
 Attractors of BN 2 after fixing A to 1: [\{'A': 1, 'B': '*', 'C': '*', 'D': '*'\}]
 Attractors of BN 3 after fixing A to 1: [\{'A': 1, 'B': '*', 'C': '*', 'D': '*'\}]
     \end{Verbatim}
+\medskip
 \noindent
 As BNs 2 and 3 have no fixed point, they fulfill the criteria ``all the
 fixed points match with marker \texttt{M}''.
@@ -2095,8 +2162,7 @@ Math Comp Biol (\url{https://doi.org/10.24072/pci.mcb.100183}).
 
 This work has been supported by the French Agence Nationale pour la
 Recherche (ANR) in the scope of the project
-\href{https://bnediction.github.io}{BNeDiction} (grant number
-ANR-20-CE45-0001).
+BNeDiction (grant number ANR-20-CE45-0001).
 
 \section*{Conflict of interest disclosure}
 
@@ -2105,10 +2171,11 @@ conflicts of interest in relation to the content of the article.
 
 \section*{Data, script, code, and supplementary information availability}
 
-Data are available online: DOI of the webpage hosting the data \url{https://doi.org/10.24072/fake1};
-Script and codes are available online: DOI of the webpage hosting the script and codes \url{https://doi.org/10.24072/fake2};
-Supplementary information is available online: DOI of the webpage hosting the script and codes \url{https://doi.org/10.24072/fake3};
-The DOI hyperlinks should be active. They should also be present in the reference list and cited in the text.
+The software *BoNesis* is available at \url{https://github.com/bnediction/bonesis}. The code of this
+paper uses version 0.4.93 archived at \url{https://doi.org/10.5281/zenodo.7657487}.
+The notebook, models, and instructions for reproducing the results are available at
+\url{https://github.com/bnediction/reprogramming-with-bonesis} archived at
+\url{https://doi.org/10.5281/zenodo.7733095}.
 
 \printbibliography
 \end{document}

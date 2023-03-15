@@ -208,7 +208,7 @@ We show how the general declarative approach of *BoNesis* can be instantiated to
 Importantly, note that *BoNesis* currently supports only locally-monotone BNs.
 
 This is an *executable paper* which demonstrates the use of *BoNesis* for the reprogramming of BNs. The corresponding notebook can be downloaded from [nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb](https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb). Its execution requires the [Jupyter notebook](https://jupyter.org/) system, [Python](https://python.org), and the Python package `bonesis` to be installed, see [github.com/bnediction/bonesis](https://github.com/bnediction/bonesis) for instructions.
-Alternatively, the notebook can be executed within the CoLoMoTo Docker distribution <cite data-citep="ColomotoDocker">(<a href="http://dx.doi.org/10.3389/fphys.2018.00680">Naldi et al., 2018</a>)</cite>, using the Docker image `colomoto/colomoto-docker:2023-02-01`, which can be launched as follows:
+Alternatively, the notebook can be executed within the CoLoMoTo Docker distribution <cite data-citep="ColomotoDocker">(<a href="http://dx.doi.org/10.3389/fphys.2018.00680">Naldi et al., 2018</a>)</cite>, using the Docker image `colomoto/colomoto-docker:2023-03-01`, which can be launched as follows:
 ```
 pip install colomoto-docker
 colomoto-docker -V 2023-03-01
