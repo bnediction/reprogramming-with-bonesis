@@ -71,7 +71,7 @@ It can be visualized online at [nbviewer.org/github/bnediction/reprogramming-wit
 A Boolean network (BN) of dimension $n$ is specified by a function $f: \mathbb B^n\to\mathbb B^n$ where $\mathbb B = \{0,1\}$ is the Boolean domain. For $i\in \{1,\cdots,n\}$, $f_i:\mathbb B^n\to\mathbb B$ is referred to as the *local function* of the *component* $i$.
 The Boolean vectors $x\in\mathbb B^n$ are called *configurations*, where for any $i\in\{1,\cdots,n\}$, $x_i$ denotes the *state* of component $i$ in the configuration $x$.
 
-A BN $f$ is *locally monotone* whenever every of its local functions are *unate*: for each $i\in\{1,\cdots,n\}$, there exists an ordering of components $\preceq^i\in \{\leq, \geq\}^n$ such that $\forall x,y\in \mathbb B^n$, $(x_1\preceq^i_1 y_1 \wedge \cdots x_n\preceq^i_n y_n) \implies f_i(x) \leq f_i(y)$. Intuitively, a BN is locally monotone whenever each of its local function can be expressed in propositional logic such that each variable appears either never or always with the same sign. For instance $f_1(x) = x_1\vee (\neg x_3 \wedge x_2)$ is unate, whereas $f_1(x) = x_2 \oplus x_3 = (x_2\wedge\neg x_3)\vee (\neg x_2\wedge x_3)$ is not unate.
+A BN $f$ is *locally monotone* whenever every of its local functions are *unate*: for each $i\in\{1,\cdots,n\}$, there exists an ordering of components $\preceq^i\in \{\leq, \geq\}^n$ such that $\forall x,y\in \mathbb B^n$, $(x_1\preceq^i_1 y_1 \wedge \cdots \land x_n\preceq^i_n y_n) \implies f_i(x) \leq f_i(y)$. Intuitively, a BN is locally monotone whenever each of its local function can be expressed in propositional logic such that each variable appears either never or always with the same sign. For instance $f_1(x) = x_1\vee (\neg x_3 \wedge x_2)$ is unate, whereas $f_1(x) = x_2 \oplus x_3 = (x_2\wedge\neg x_3)\vee (\neg x_2\wedge x_3)$ is not unate.
 
 *Example.* The BN $f$ of dimension $3$ with $f_1(x)=\neg x_2$, $f_2(x)=\neg x_1$, and $f_3(x) = \neg x_1\wedge x_2$ is locally monotone; and an instance of application is $f(000)=110$.
 
@@ -406,7 +406,7 @@ Given an initial configuration $z$, we identify the perturbations $P$ of at most
 The associated decision problem can be expressed as the following $\exists\forall$-expression, hence being at most in $\Sigma_2^{\mathrm P}$:
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge \operatorname{reach}_P(z,x))\implies x\models M
+\exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge \operatorname{reach}_P(z,x))\implies x\models M
 \end{equation}
 
 "There exists a perturbation $P$ such that for any configuration $x\in\mathbb B^n$,
@@ -415,7 +415,7 @@ if $x$ is a fixed point of the perturbed BN $(f/P)$, and $x$ is reachable from $
 As explained in the Method section, the reachability property boils down to computing the smallest trap space containing $z$: if it contains the fixed point $x$, then $x$ is reachable from $z$ with the MP update mode.
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge 
+\exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge 
 x\in\operatorname{TS}_P(z))\implies x\models M\enspace.
 \end{equation}
 
@@ -525,20 +525,20 @@ We identify the perturbations $P$ of at most $k$ components so that the configur
 The associated decision problem can be expressed as follows:
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, \operatorname{IN-ATTRACTOR}_P(x) \implies x\models M
+\exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, \operatorname{IN-ATTRACTOR}_P(x) \implies x\models M
 \end{equation}
 
 ("There exists a perturbation $P$ of at most $k$ components, such that for all configurations $x$, if $x$ belongs to an attractor of the perturbed BN $f/P$, then $x$ matches with the specified markers $M$")
 
 By restricting the range of the universal part of the equation to the configurations which do not match with the marker $M$, we obtain:
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n: x\not\models M, \neg\operatorname{IN-ATTRACTOR}_P(x)
+\exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n: x\not\models M, \neg\operatorname{IN-ATTRACTOR}_P(x)
 \end{equation}
 
 The $\operatorname{IN-ATTRACTOR}$ property being itself a quantified Boolean expression, we obtain the following $\exists\forall\exists$-expression:
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n: x\not\models M, \exists y\in\mathbb B^n,
+\exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n: x\not\models M, \exists y\in\mathbb B^n,
    y\in \operatorname{TS}_P(x), \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \end{equation}
 
@@ -546,11 +546,11 @@ The problem of satisfiability of this quantified Boolean expression is beyond th
 Nevertheless, we can approach this problem by its complementary: the existence of perturbations of size $k$ such that at least one configuration belonging to an attractor does *not* match with the marker $M$.
 This complementary problem can be expressed with this following expression
 \begin{equation}
-\exists P\in\mathbb M^k, \exists x\in\mathbb B^n,x\not\models M \wedge \operatorname{IN-ATTRACTOR}_P(x)
+\exists P\in\mathbb M^{\leq k}, \exists x\in\mathbb B^n,x\not\models M \wedge \operatorname{IN-ATTRACTOR}_P(x)
 \end{equation}
 which is an $\exists\forall$-expression:
 \begin{equation}
-\exists P\in\mathbb M^k, \exists x\in\mathbb B^n, x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
+\exists P\in\mathbb M^{\leq k}, \exists x\in\mathbb B^n, x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \enspace.
 \end{equation}
 
@@ -688,20 +688,20 @@ Thus, P4 is the same problem as P3, except that we focus only on attractors reac
 The associated decision problem can be expressed as follows:
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z)  \vee \neg\operatorname{IN-ATTRACTOR}_P(x)
+\exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z)  \vee \neg\operatorname{IN-ATTRACTOR}_P(x)
 \end{equation}
 
 ("There exists a perturbation $P$ of at most $k$ components, such that for all configurations $x$, either $x$ matches with the marker $M$, or $x$ does not belong to an attractor, or $x$ is not reachable from $z$").
 
 By integrating the definition of the $\operatorname{IN-ATTRACTOR}$ property, we obtain the following $\exists\forall\exists$-expression:
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z) \vee \exists y\in\mathbb B^n,
+\exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z) \vee \exists y\in\mathbb B^n,
    y\in \operatorname{TS}_P(x), \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \end{equation}
 
 The resolution of the problem can be approached in a very similar way to P3, i.e., by solving its complement. The equation is almost the same, with the addition that $x$ must be reachable from $z$, leading to the $\exists\forall$-expression:
 \begin{equation}
-\exists P\in\mathbb M^k, \exists x\in\mathbb B^n, x\in\operatorname{TS}_P(z) \wedge x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
+\exists P\in\mathbb M^{\leq k}, \exists x\in\mathbb B^n, x\in\operatorname{TS}_P(z) \wedge x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \enspace.
 \end{equation}
 
