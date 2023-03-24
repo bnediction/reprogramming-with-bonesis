@@ -390,8 +390,10 @@ function} of the \emph{component} \(i\). The Boolean vectors
 A BN \(f\) is \emph{locally monotone} whenever every of its local
 functions are \emph{unate}: for each \(i\in\{1,\cdots,n\}\), there
 exists an ordering of components \(\preceq^i\in \{\leq, \geq\}^n\) such
-that \(\forall x,y\in \mathbb B^n\),
-\((x_1\preceq^i_1 y_1 \wedge \cdots x_n\preceq^i_n y_n) \implies f_i(x) \leq f_i(y)\).
+that 
+$$\forall x,y\in \mathbb B^n,
+(x_1\preceq^i_1 y_1 \wedge \cdots \wedge x_n\preceq^i_n y_n) \implies f_i(x) \leq f_i(y)
+\enspace.$$
 Intuitively, a BN is locally monotone whenever each of its local
 function can be expressed in propositional logic such that each variable
 appears either never or always with the same sign. For instance
@@ -399,11 +401,11 @@ appears either never or always with the same sign. For instance
 \(f_1(x) = x_2 \oplus x_3 = (x_2\wedge\neg x_3)\vee (\neg x_2\wedge x_3)\)
 is not unate.
 
-\paragraph{Example}
-
+\begin{exam*}
 The BN \(f\) of dimension \(3\) with \(f_1(x)=\neg x_2\),
 \(f_2(x)=\neg x_1\), and \(f_3(x) = \neg x_1\wedge x_2\) is locally
 monotone; and an instance of application is \(f(000)=110\).
+\end{exam*}
 
 Locally monotone BNs should not be confused with \emph{monotone} BNs
 where a component appears in \emph{all} local functions with the same
@@ -932,8 +934,8 @@ where \texttt{model.bnet} is a BN encoded in BooleanNet format,
 \texttt{M} specifies the marker as a JSON map, and \texttt{k} is the
 maximum number of perturbations. The existence of at least one fixed
 point can be lifted with the option \texttt{-\/-allow-no-fixpoint}.
-\paragraph{Example}
 
+\begin{exam*}
 We illustrate the marker-reprogramming of fixed points on a small toy BN
 example, which has no fixed point. In the following, we use
 \texttt{colomoto.minibn.BooleanNetwork} to define this BN.
@@ -1058,6 +1060,7 @@ these 2 must be fixed as well, to any value. The solution
 is not returned as
 \texttt{\{\textquotesingle{}A\textquotesingle{}:\ 0\}} is sufficient to
 acquire the desired dynamical property.
+\end{exam*}
 
 In our \emph{BoNesis} code snippet defined above, by default we ensure
 that the perturbed BN possesses at least one fixed point. When relaxing
@@ -1209,8 +1212,8 @@ where \texttt{model.bnet} is a BN encoded in BooleanNet format,
 number of perturbations, and \texttt{z} is the initial configuration as
 a JSON map. The existence of at least one fixed point can be lifted with
 the option \texttt{-\/-allow-no-fixpoint}.
-\paragraph{Example}
 
+\begin{exam*}
 Let us consider the following toy BN with two positive feedback cycles:
 \medskip
 \begin{small}
@@ -1345,6 +1348,7 @@ configuration in JSON format:
 \{'C': 1\}
 
     \end{Verbatim}
+\end{exam*}
 
 \hypertarget{marker-reprogramming-of-attractors-p3}{%
 \subsubsection{Marker reprogramming of attractors
@@ -1449,8 +1453,8 @@ The corresponding command line is of the form
 where \texttt{model.bnet} is a BN encoded in BooleanNet format,
 \texttt{M} specifies the marker as a JSON map, \texttt{k} is the maximum
 number of perturbations.
-\paragraph{Example}
 
+\begin{exam*}
 Let us consider the following BN:
 \medskip
 \begin{small}
@@ -1664,6 +1668,7 @@ perturbing at least two components.
           \{'B': 1, 'C': 1\}]
 \end{Verbatim}
 \end{small}
+\end{exam*}
 \hypertarget{soure-marker-reprograming-of-attractors-p4}{%
 \subsubsection{Soure-marker reprograming of attractors
 (P4)}\label{soure-marker-reprograming-of-attractors-p4}}
@@ -1743,8 +1748,8 @@ where \texttt{model.bnet} is a BN encoded in BooleanNet format,
 \texttt{M} specifies the marker as a JSON map, \texttt{k} is the maximum
 number of perturbations, and \texttt{z} is the initial configuration as
 a JSON map.
-\paragraph{Example}
 
+\begin{exam*}
 Let us consider again the BN \texttt{f} analyzed in the previous
 section. By focusing only on attractors reachable from the configuration
 where \texttt{A} is fixed to 1 and other nodes to 0, the reprogramming
@@ -1782,6 +1787,7 @@ The same results can be obtained using the command line as follows.
 \{'C': 1\}
 
     \end{Verbatim}
+\end{exam*}
 
 \hypertarget{reprogramming-of-ensembles-of-boolean-networks}{%
 \subsection{Reprogramming of ensembles of Boolean
