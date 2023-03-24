@@ -9,7 +9,6 @@
 
 \documentclass[PCJ,Unicode,screen,mode=plain]{cedram}
 \usepackage[natbib=true,style=pcj]{biblatex}
-\usepackage{lipsum}
 
 % Declare your BibTeX file here (keep the .bib extension):
 \addbibresource{PCJ-sample.bib}
@@ -197,6 +196,7 @@
     \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
 
 \def\keyFont{\fontsize{8}{11}\helveticabold }
+\usepackage{breakurl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -315,7 +315,7 @@ and by \citet{Moon22}, based on bilevel integer programming. To our
 knowledge, none of the other problems have been addressed completely in
 the literature.
 
-The software \emph{BoNesis}\footnote{\url{https://github.com/bnediction/bonesis}}
+The software \emph{BoNesis} (\href{https://github.com/bnediction/bonesis}{https://github.com/bnediction/bonesis})
 provides a generic environment for the automated construction of BNs
 with MP update mode from specified structural and dynamical properties.
 The properties are translated into a logic satisfiability problem,
@@ -332,7 +332,8 @@ strategies.
 In this paper, we show how the software \emph{BoNesis} can be employed
 to solve P1, P2, P3, and P4 in the scope of \emph{locally-monotone} BNs,
 where each local function is
-\emph{{unate}}\footnote{\url{https://en.wikipedia.org/wiki/Unate_function}}, i.e.,
+\emph{{unate}}
+(\href{https://en.wikipedia.org/wiki/Unate_function}{https://en.wikipedia.org/ wiki/Unate\_function}), i.e.,
 where each local function never depends on both positively and
 negatively from a same component. Locally-monotone BNs cover all the
 models where it assumed that a node cannot be both an activator and
@@ -363,9 +364,10 @@ This paper is \emph{executable}: it contains snippets of Python code
 employing \emph{BoNesis} to demonstrate its usage on small examples,
 including command line usage. Instructions for its execution are given
 at the beginning of the \emph{Results} section. It can be visualized
-online\footnote{\url{https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb}}
-and interactively executed either online\footnote{%
-\url{https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/release?urlpath=tree/paper.ipynb}}
+online
+(\href{https://nbviewer.org/github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb}{https://nbviewer.org/ github/bnediction/reprogramming-with-bonesis/blob/release/paper.ipynb})
+and interactively executed either online 
+(\href{https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/release?urlpath=tree/paper.ipynb}{https://mybinder.org/v2/gh/bnediction/reprogramming-with-bonesis/\-rele\-ase?urlpath=tree/paper.ipynb})
 using \emph{mybinder} online free service, or
 locally, following instructions given later in this paper.
 \hypertarget{methods}{%
@@ -422,7 +424,7 @@ deterministic mode, where the next configuration is given by its
 application to \(f\) (\(x\) is succeeded by \(f(x)\)), and the
 \emph{fully asynchronous} (often denoted only asynchronous) where the
 next configuration results from the application of only one local
-function, chosen non-deterministically.
+function, chosen non-deter\-ministically.
 
 However, (a)synchronous update modes do not lead to a complete
 qualitative abstraction of quantitative systems and preclude the
@@ -513,8 +515,9 @@ satisfiable: it is a \emph{co}NP-complete problem. It is not known
 whether coNP = NP.
 
 Then, the alternation of quantifiers makes the problem climbing into the
-so-called polynomial hierarchy\footnote{See
-  \url{https://en.wikipedia.org/wiki/Polynomial_hierarchy}}.
+so-called polynomial hierarchy (see
+  \href{https://en.wikipedia.org/wiki/Polynomial_hierarchy}{https://en.wikipedia.org/wiki/Polynomial\_hierarchy}).
+  The
 \(\exists\ldots\)-expressions are \(\Sigma_k^{\mathrm P}\)-complete
 problems, where \(k\) is the number of alternating quantifiers (starting
 with \(\exists\)), while \(\forall\ldots\)-expressions are
@@ -582,8 +585,8 @@ between 0 and 1 in the (cyclic) attractor.
 
 The computational complexity of decision problems related to minimal
 trap spaces has been extensively addressed in
-\citep{TrapSpaceComplexity} with different representations of Boolean
-networks. For the case of local functions represented with propositional
+\citep{TrapSpaceComplexity} with different representations of BNs
+For the case of local functions represented with propositional
 logic, as we consider here, deciding whether a sub-hypercube is a trap
 space is coNP-complete problem, whereas deciding whether it is a
 \emph{minimal} trap space is a coNP\(^\text{coNP}\)-complete problem,
@@ -627,9 +630,9 @@ while changed
 
 In the worst case, this algorithm makes a quadratic number of calls to
 the \texttt{SAT} problem. Therefore, the decision of MP reachability of
-attractors is in PTIME\(^\text{NP}\) in general\footnote{this problem is
+attractors is in PTIME\(^\text{NP}\) in general (this problem is
   actually in NP when allowing a number of variables quadratic with
-  \(n\)}, and PTIME in the locally-monotone case.
+  \(n\)), and PTIME in the locally-monotone case.
 
 Note that the general MP reachability property is not addressed here,
 but its overall complexity is identical. With (a)synchronous update
@@ -681,7 +684,7 @@ Currently, the domain of BNs \(\mathbb F\) can be one of the following:
 \item
   Any locally-monotone BN matching with a given \emph{influence graph}
   \(\mathcal G\): \(\mathbb F = \{ f\mid G(f)\subseteq \mathcal G\}\).
-  An influence graph is a signed digraph between components, i.e., of
+  An influence graph is a signed digraph between components of
   the form \((\{1,\cdots,n\},V)\) with
   \(V\subseteq \{1,\cdots,n\}\times \{+1,-1\}\times \{1,\cdots n\}\).
   The influence graph of a BN \(f\), denoted by \(G(f)\) has an edge
@@ -696,7 +699,7 @@ Currently, the domain of BNs \(\mathbb F\) can be one of the following:
 \emph{BoNesis} offers a Python programming interface to declare the
 dynamical properties over BNs, including reachability, fixed points and
 trap spaces. \emph{BoNesis} relies on Answer-Set Programming (ASP) and
-the ASP solver \emph{clingo}\footnote{\url{https://potassco.org/clingo}} for the
+the ASP solver \emph{clingo} (\href{https://potassco.org/clingo}{https://potassco.org/clingo}) for the
 enumeration of solutions. ASP is a declarative logic programming
 framework for expressing combinatorial decision problems and enumerate
 their solutions, possibly with optimizations. ASP can be employed for
@@ -763,9 +766,9 @@ The code provided in this article requires the following setup:
 \medskip
 
 Alternatively, the computation of reprogramming perturbations from
-single Boolean networks can be performed using the command line
-program\texttt{bonesis-reprogramming}, provided alongside the
-\texttt{bonesis} Python package. We detail its usage in each case.
+single BNs can be performed using the command line
+program \texttt{bonesis-reprogramming}, provided alongside the
+\texttt{bone\-sis} Python package. We detail its usage in each case.
 \hypertarget{marker-reprogramming-of-boolean-networks}{%
 \subsection{Marker reprogramming of Boolean
 networks}\label{marker-reprogramming-of-boolean-networks}}
@@ -834,11 +837,12 @@ P4 & \(\exists\forall\exists\) &
 \bottomrule()
 \end{longtable}
 
+\noindent
 where \texttt{{[}base{]}} is the command line
 \texttt{bonesis-reprogramming\ model.bnet\ M\ k}, with
 \texttt{model.bnet} the path to a file in
 BooleanNet
-format\footnote{\url{http://colomoto.org/biolqm/doc/format-bnet.html}}, \texttt{M} specifies the marker as a JSON map, \texttt{k} is
+format (\href{http://colomoto.org/biolqm/doc/format-bnet.html}{http://colomoto.org/biolqm/doc/format-bnet.html}), \texttt{M} specifies the marker as a JSON map, \texttt{k} is
 the maximum number of simultaneous perturbations, and \texttt{z} is the
 initial configuration as a JSON map. For instance,
 
@@ -1001,7 +1005,7 @@ attractor, consisting of all the configurations of the network.
     
 
 Recall that the fixed points are identical in asynchronous and MP. We
-use \texttt{mpbn}\footnote{\url{https://github.com/bnediction/mpbn}} to analyze
+use \texttt{mpbn} (\href{https://github.com/bnediction/mpbn}{https://github .com/bnediction/mpbn}) to analyze
 the dynamical properties with the MP update mode:
 \medskip
 \begin{small}
@@ -1324,7 +1328,7 @@ Considering only the fixed points reachable from the configuration
 \end{Verbatim}
 \end{small}
 \medskip
-The command line program \texttt{bonesis-reprogramming} can perform P2
+The program \texttt{bonesis-reprogramming} can perform P2
 by specifying the \texttt{-\/-rechable-from} option giving the initial
 configuration in JSON format:
 \medskip

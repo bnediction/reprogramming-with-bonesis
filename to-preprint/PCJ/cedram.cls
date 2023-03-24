@@ -2233,6 +2233,7 @@
     \AtEndOfClass{
         \RequirePackage[%
             pdfview=XYZ,
+            breaklinks=true,
             pdfstartview=FitV,
             % pdfcenterwindow,
             pdffitwindow,
