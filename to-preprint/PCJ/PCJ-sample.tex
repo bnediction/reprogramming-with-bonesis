@@ -727,17 +727,17 @@ Its execution requires the \emph{Jupyter notebook}
 system, \emph{Python}, and the Python package
 \texttt{bonesis} to be installed.
 Alternatively, the notebook can be executed within the
-CoLoMoTo Docker distribution \citep{ColomotoDocker}, using the Docker
-image \texttt{colomoto/colomoto-docker:2023-03-01}, which can be
-launched as follows:
+CoLoMoTo Docker distribution \citep{ColomotoDocker} as follows:
 
 \begin{verbatim}
 pip install colomoto-docker
 colomoto-docker -V 2023-03-01
 \end{verbatim}
 
+\noindent
 then open \url{http://127.0.0.1:8888} and upload the notebook from the
 Jupyter interface.
+
 The code provided in this article requires the following setup:
 
 \medskip
@@ -786,9 +786,9 @@ and only if each of its configurations match with \(M\)
 components among \(\{1, \cdots, n\}\) to a Boolean value.
 
 The objective of marker-reprogramming is to identify perturbations so
-that all the fixed points/attractors of the perturbed \(f\) match with
+that all the attractors of the perturbed \(f\) match with
 the marker \(M\). The source-marker reprogramming then focuses on the
-fixed points/attractors reachable from a given initial configuration
+attractors reachable from a given initial configuration
 only, thus potentially requiring fewer perturbations.
 
 A very important aspect of marker reprogramming is that it accounts for
@@ -1127,7 +1127,7 @@ following \(\exists\forall\)-expression, hence being at most in
 \(\Sigma_2^{\mathrm P}\):
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge \operatorname{reach}_P(z,x))\implies x\models M
+    \exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge \operatorname{reach}_P(z,x))\implies x\models M
 \end{equation}
 
 ``There exists a perturbation \(P\) such that for any configuration
@@ -1141,7 +1141,7 @@ the fixed point \(x\), then \(x\) is reachable from \(z\) with the MP
 update mode.
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge 
+    \exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, ((f/P)(x)=x \wedge 
 x\in\operatorname{TS}_P(z))\implies x\models M\enspace.
 \end{equation}
 
@@ -1357,7 +1357,7 @@ cannot oscillate). The associated decision problem can be expressed as
 follows:
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, \operatorname{IN-ATTRACTOR}_P(x) \implies x\models M
+    \exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, \operatorname{IN-ATTRACTOR}_P(x) \implies x\models M
 \end{equation}
 
 (``There exists a perturbation \(P\) of at most \(k\) components, such
@@ -1368,7 +1368,7 @@ the perturbed BN \(f/P\), then \(x\) matches with the specified markers
 By restricting the range of the universal part of the equation to the
 configurations which do not match with the marker \(M\), we obtain:
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n: x\not\models M, \neg\operatorname{IN-ATTRACTOR}_P(x)
+    \exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n: x\not\models M, \neg\operatorname{IN-ATTRACTOR}_P(x)
 \end{equation}
 
 The \(\operatorname{IN-ATTRACTOR}\) property being itself a quantified
@@ -1376,7 +1376,7 @@ Boolean expression, we obtain the following
 \(\exists\forall\exists\)-expression:
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n: x\not\models M, \exists y\in\mathbb B^n,
+    \exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n: x\not\models M, \exists y\in\mathbb B^n,
    y\in \operatorname{TS}_P(x), \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \end{equation}
 
@@ -1387,10 +1387,10 @@ problem by its complementary: the existence of perturbations of size
 \(k\) such that at least one configuration belonging to an attractor
 does \emph{not} match with the marker \(M\). This complementary problem
 can be expressed with this following expression \begin{equation}
-\exists P\in\mathbb M^k, \exists x\in\mathbb B^n,x\not\models M \wedge \operatorname{IN-ATTRACTOR}_P(x)
+    \exists P\in\mathbb M^{\leq k}, \exists x\in\mathbb B^n,x\not\models M \wedge \operatorname{IN-ATTRACTOR}_P(x)
 \end{equation} which is an \(\exists\forall\)-expression:
 \begin{equation}
-\exists P\in\mathbb M^k, \exists x\in\mathbb B^n, x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
+    \exists P\in\mathbb M^{\leq k}, \exists x\in\mathbb B^n, x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \enspace.
 \end{equation}
 
@@ -1679,7 +1679,7 @@ potentially requiring fewer perturbations.
 The associated decision problem can be expressed as follows:
 
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z)  \vee \neg\operatorname{IN-ATTRACTOR}_P(x)
+    \exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z)  \vee \neg\operatorname{IN-ATTRACTOR}_P(x)
 \end{equation}
 
 (``There exists a perturbation \(P\) of at most \(k\) components, such
@@ -1690,7 +1690,7 @@ reachable from \(z\)'').
 By integrating the definition of the \(\operatorname{IN-ATTRACTOR}\)
 property, we obtain the following \(\exists\forall\exists\)-expression:
 \begin{equation}
-\exists P\in\mathbb M^k, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z) \vee \exists y\in\mathbb B^n,
+    \exists P\in\mathbb M^{\leq k}, \forall x\in\mathbb B^n, x\models M \vee x\notin\bar\rho^{f/P}_{\mathrm{mp}}(z) \vee \exists y\in\mathbb B^n,
    y\in \operatorname{TS}_P(x), \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \end{equation}
 
@@ -1698,7 +1698,7 @@ The resolution of the problem can be approached in a very similar way to
 P3, i.e., by solving its complement. The equation is almost the same,
 with the addition that \(x\) must be reachable from \(z\), leading to
 the \(\exists\forall\)-expression: \begin{equation}
-\exists P\in\mathbb M^k, \exists x\in\mathbb B^n, x\in\operatorname{TS}_P(z) \wedge x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
+    \exists P\in\mathbb M^{\leq k}, \exists x\in\mathbb B^n, x\in\operatorname{TS}_P(z) \wedge x\not\models M\wedge \forall y\in\mathbb B^n, y\in \operatorname{TS}_P(x) \implies \operatorname{TS}_P(y) \neq \operatorname{TS}_P(x)
 \enspace.
 \end{equation}
 
@@ -2133,10 +2133,17 @@ the perturbation \(Q\), then it must match with the marker \(M\)''. The
 more general 2-steps reprogramming along attractors can be expressed as
 follows:
 
-\[\exists P,Q\in\mathbb M^{\leq k}, \forall x,y\in\mathbb B^n,
-\operatorname{IN-ATTRACTOR}_P(x) \Rightarrow
-     \operatorname{reach}_Q(x,y) \Rightarrow
-     \operatorname{IN-ATTRACTOR}_Q(y) \Rightarrow y \models M\]
+\[
+\begin{split}
+    \exists P,Q\in\mathbb M^{\leq k}, \forall x,y\in\mathbb B^n&,
+\operatorname{IN-ATTRACTOR}_P(x) \\ 
+        & \quad
+\Rightarrow
+     \operatorname{reach}_Q(x,y)  
+     \Rightarrow
+     \operatorname{IN-ATTRACTOR}_Q(y) \Rightarrow y \models M
+ \end{split}
+ \]
 Accounting for \(\operatorname{IN-ATTRACTOR}\), this leads to an
 \(\exists\forall\exists\)-expression, as for the single-step
 reprogramming. Future work may then investigate the encoding of
@@ -2171,11 +2178,11 @@ conflicts of interest in relation to the content of the article.
 
 \section*{Data, script, code, and supplementary information availability}
 
-The software *BoNesis* is available at \url{https://github.com/bnediction/bonesis}. The code of this
-paper uses version 0.4.93 archived at \url{https://doi.org/10.5281/zenodo.7657487}.
-The notebook, models, and instructions for reproducing the results are available at
+The software \emph{BoNesis} is available at \url{https://github.com/bnediction/bonesis}. The code of this
+paper uses version 0.4.93 archived at \href{https://doi.org/10.5281/zenodo.7657487}{doi:10.5281/zenodo.7657487}.
+The notebook, models, and instructions for reproducing the rreproducingesults are available at
 \url{https://github.com/bnediction/reprogramming-with-bonesis} archived at
-\url{https://doi.org/10.5281/zenodo.7733095}.
+\href{https://doi.org/10.5281/zenodo.7733095}{doi;10.5281/zenodo.7733095}.
 
 \printbibliography
 \end{document}
